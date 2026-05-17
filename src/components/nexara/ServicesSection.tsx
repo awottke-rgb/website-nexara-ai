@@ -66,36 +66,50 @@ function BentoCard({ service, index }: { service: any; index: number }) {
       onBlur={handleBlur}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative card-antigravity pt-10 px-10 pb-12 flex flex-col h-full min-h-[380px] group ${service.colSpan}`}
+      className={`relative card-antigravity pt-10 px-10 pb-12 flex flex-col h-full min-h-[380px] group ${service.colSpan} border-0`}
     >
+      {/* Border Glow Effect */}
       <div
-        className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
+        className="pointer-events-none absolute -inset-px rounded-[40px] opacity-0 transition duration-300 group-hover:opacity-100 z-10"
         style={{
-          opacity,
-          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(37, 99, 235, 0.1), transparent 40%)`,
+          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(37, 99, 235, 0.4), transparent 40%)`,
+          padding: "1px",
+          WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+          WebkitMaskComposite: "xor",
+          maskComposite: "exclude",
         }}
       />
 
-      <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-8 group-hover:bg-brand-blue/10 transition-colors border border-white/5">
-        <Icon className="w-7 h-7 text-white group-hover:text-brand-blue transition-colors" />
-      </div>
+      {/* Spotlight Background */}
+      <div
+        className="pointer-events-none absolute -inset-px rounded-[40px] opacity-0 transition duration-300 group-hover:opacity-100"
+        style={{
+          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(37, 99, 235, 0.05), transparent 40%)`,
+        }}
+      />
 
-      <h3 className="text-2xl font-bold text-white mb-4 font-display leading-tight">
-        {service.title}
-      </h3>
-      <p className="text-gray-400 mb-10 leading-relaxed font-medium">
-        {service.description}
-      </p>
+      <div className="relative z-20">
+        <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-8 group-hover:bg-brand-blue/10 transition-colors border border-white/5">
+          <Icon className="w-7 h-7 text-white group-hover:text-brand-blue transition-colors" />
+        </div>
 
-      <div className="mt-auto flex flex-wrap gap-2">
-        {service.features.map((feature: string) => (
-          <span
-            key={feature}
-            className="px-4 py-1.5 rounded-full bg-white/5 text-gray-400 text-xs font-bold uppercase tracking-widest border border-white/5"
-          >
-            {feature}
-          </span>
-        ))}
+        <h3 className="text-2xl font-bold text-white mb-4 font-display leading-tight">
+          {service.title}
+        </h3>
+        <p className="text-gray-400 mb-10 leading-relaxed font-medium">
+          {service.description}
+        </p>
+
+        <div className="mt-auto flex flex-wrap gap-2">
+          {service.features.map((feature: string) => (
+            <span
+              key={feature}
+              className="px-4 py-1.5 rounded-full bg-white/5 text-gray-400 text-xs font-bold uppercase tracking-widest border border-white/5"
+            >
+              {feature}
+            </span>
+          ))}
+        </div>
       </div>
     </motion.div>
   );

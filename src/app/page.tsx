@@ -9,6 +9,7 @@ import ServicesSection from "@/components/nexara/ServicesSection";
 import HowItWorksSection from "@/components/nexara/HowItWorksSection";
 import ComparisonSection from "@/components/nexara/ComparisonSection";
 import StatsSection from "@/components/nexara/StatsSection";
+import Angebot from "@/components/nexara/Angebot";
 import CtaSection from "@/components/nexara/CtaSection";
 import Footer from "@/components/nexara/Footer";
 import LeadModal from "@/components/nexara/LeadModal";
@@ -54,6 +55,14 @@ export default function Home() {
 
         <FadeInSection>
           <ComparisonSection />
+        </FadeInSection>
+
+        <FadeInSection>
+          <HowItWorksSection />
+        </FadeInSection>
+
+        <FadeInSection>
+          <Angebot />
         </FadeInSection>
 
         <FadeInSection>

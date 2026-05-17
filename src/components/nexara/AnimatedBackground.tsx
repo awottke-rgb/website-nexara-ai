@@ -73,6 +73,8 @@ export default function AnimatedBackground() {
       }
     };
 
+    let scrollY = 0;
+
     const animate = (time: number) => {
       const w = window.innerWidth;
       const h = window.innerHeight;
@@ -88,18 +90,18 @@ export default function AnimatedBackground() {
       const dynamicRadius = 350 + pulse;
 
       particles.forEach((p) => {
+        // Calculate distance from "dome" center (mouse or screen center)
+        // Add parallax scroll offset to the base positions
+        const parallaxY = scrollY * 0.2 * (p.z / 100 + 0.5);
         const dx = p.baseX - centerX;
-        const dy = p.baseY - centerY;
+        const dy = (p.baseY - parallaxY) - centerY;
         const dist = Math.sqrt(dx * dx + dy * dy);
         
         let targetZ = 0;
         let opacityMultiplier = 0;
         
         if (mouseActive.current && dist < dynamicRadius) {
-          // Semi-sphere with pulse influence
           targetZ = Math.sqrt(Math.pow(dynamicRadius, 2) - Math.pow(dist, 2)) * 0.6;
-          
-          // Sharper fade-out for higher contrast spotlight
           opacityMultiplier = Math.pow(Math.max(0, 1 - (dist / dynamicRadius)), 0.7);
         }
 
@@ -107,7 +109,7 @@ export default function AnimatedBackground() {
         const angle = Math.atan2(dy, dx);
         
         const targetX = p.baseX + Math.cos(angle) * pushForce;
-        const targetY = p.baseY + Math.sin(angle) * pushForce;
+        const targetY = (p.baseY - parallaxY) + Math.sin(angle) * pushForce;
 
         p.x += (targetX - p.x) * 0.1;
         p.y += (targetY - p.y) * 0.1;
@@ -119,12 +121,10 @@ export default function AnimatedBackground() {
         const screenX = centerX + (p.x - centerX) * scale;
         const screenY = centerY + (p.y - centerY) * scale;
 
-        // Skip drawing if invisible
         if (opacityMultiplier <= 0) return;
 
         ctx.save();
         ctx.translate(screenX, screenY);
-        // Boost overall opacity for contrast
         ctx.globalAlpha = p.opacity * fadeOpacity * opacityMultiplier * (scale * 0.6 + 0.4);
         ctx.fillStyle = p.color;
         
@@ -134,7 +134,6 @@ export default function AnimatedBackground() {
         ctx.arc(0, 0, size / 2, 0, Math.PI * 2);
         ctx.fill();
         
-        // Stronger glow
         if (p.z > 20) {
           ctx.shadowBlur = p.z * 0.3;
           ctx.shadowColor = p.color;
@@ -156,7 +155,6 @@ export default function AnimatedBackground() {
       const mouseX = e.clientX - rect.left;
       const mouseY = e.clientY - rect.top;
 
-      // Check if mouse is within canvas bounds
       if (
         mouseX >= 0 &&
         mouseX <= rect.width &&
@@ -170,13 +168,19 @@ export default function AnimatedBackground() {
       }
     };
 
+    const handleScroll = () => {
+      scrollY = window.scrollY;
+    };
+
     window.addEventListener("resize", resize);
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
       cancelAnimationFrame(animationId);
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 

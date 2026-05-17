@@ -23,8 +23,8 @@ export const metadata: Metadata = {
 };
 
 import LeadModal from "@/components/nexara/LeadModal";
-
 import MobileStickyCTA from "@/components/nexara/MobileStickyCTA";
+import ScrollProgress from "@/components/nexara/ScrollProgress";
 
 export default function RootLayout({
   children,
@@ -37,6 +37,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${syne.variable} h-full antialiased`}
     >
       <body className="min-h-screen flex flex-col bg-navy text-foreground">
+        <ScrollProgress />
         <div className="edge-glow" />
         {children}
         <MobileStickyCTA />

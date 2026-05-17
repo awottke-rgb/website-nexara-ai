@@ -3,6 +3,8 @@
 import { ArrowRight, ChevronDown } from "lucide-react";
 import AnimatedBackground from "./AnimatedBackground";
 import { motion } from "framer-motion";
+import Magnetic from "./Magnetic";
+import TypingText from "./TypingText";
 
 interface HeroSectionProps {
   onAnalyseClick: () => void;
@@ -27,82 +29,79 @@ export default function HeroSection({ onAnalyseClick }: HeroSectionProps) {
 
       {/* Content */}
       <motion.div 
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative z-10 max-w-5xl mx-auto px-6 text-center"
       >
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/5 mb-10">
-          <div className="w-1.5 h-1.5 rounded-full bg-brand-blue" />
-          <span className="text-xs text-gray-400 font-bold tracking-widest uppercase">
-            Nexara AI / Sachsen
-          </span>
+        <div className="flex justify-center mb-8">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+            <div className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse" />
+            <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-gray-400">Nexara AI / Sachsen</span>
+          </div>
         </div>
 
         {/* Headline */}
-        <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight leading-[1.05] mb-10 font-display text-white">
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            {"Ihre Website.".split("").map((char, index) => (
+        <h1 className="text-6xl sm:text-7xl md:text-8xl font-bold text-white mb-10 tracking-tight font-display leading-[0.95]">
+          {"Ihre Website.".split("").map((char, i) => (
+            <motion.span
+              key={i}
+              initial={{ opacity: 0, filter: "blur(20px)", y: 20 }}
+              animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+              transition={{ duration: 1, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
+              className="inline-block"
+            >
+              {char === " " ? "\u00A0" : char}
+            </motion.span>
+          ))}
+          <br />
+          <span className="text-brand-blue italic relative inline-block mt-4">
+            {"Neu definiert.".split("").map((char, i) => (
               <motion.span
-                key={index}
-                initial={{ opacity: 0, filter: "blur(10px)", scale: 0.8 }}
-                animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
-                transition={{ 
-                  duration: 0.4, 
-                  delay: index * 0.05,
-                  ease: [0.16, 1, 0.3, 1] 
-                }}
+                key={i}
+                initial={{ opacity: 0, filter: "blur(20px)", y: 20 }}
+                animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                transition={{ duration: 1, delay: 0.8 + i * 0.05, ease: [0.16, 1, 0.3, 1] }}
                 className="inline-block"
               >
                 {char === " " ? "\u00A0" : char}
               </motion.span>
             ))}
-          </motion.span>
-          <br />
-          <motion.span 
-            className="text-brand-blue italic inline-block"
-            initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 1, delay: 1.5, ease: "easeOut" }}
-          >
-            Neu definiert.
-          </motion.span>
+          </span>
         </h1>
 
         {/* Subline */}
-        <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed font-medium">
-          Wir bauen digitale Erlebnisse, die Ihre Konkurrenz alt aussehen lassen. 
-          Performance-fokussiert, KI-gestützt und kompromisslos im Design.
-        </p>
+        <div className="max-w-2xl mx-auto mb-12 flex justify-center">
+          <TypingText 
+            text="Wir bauen digitale Erlebnisse, die Ihre Konkurrenz alt aussehen lassen. Performance-fokussiert, KI-gestützt und kompromisslos im Design."
+            className="text-gray-400 text-lg sm:text-xl font-medium leading-relaxed justify-center"
+          />
+        </div>
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
-          <button
-            id="hero-analyse-cta"
-            onClick={onAnalyseClick}
-            className="btn-primary group px-10 py-5 bg-white text-black font-bold
-                       flex items-center justify-center gap-3 cursor-pointer"
-          >
-            Analyse anfordern
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
+          <Magnetic strength={0.15}>
+            <button
+              id="hero-analyse-cta"
+              onClick={onAnalyseClick}
+              className="btn-primary group px-10 py-5 bg-white text-black font-bold
+                         flex items-center justify-center gap-3 cursor-pointer"
+            >
+              Analyse anfordern
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </Magnetic>
 
-          <a
-            href="#leistungen"
-            className="px-10 py-5 text-gray-400 font-bold rounded-full
-                       hover:text-white hover:bg-white/5
-                       transition-all duration-300
-                       flex items-center justify-center gap-2"
-          >
-            Unsere Services
-            <ChevronDown className="w-5 h-5" />
-          </a>
+          <Magnetic strength={0.15}>
+            <a
+              href="#leistungen"
+              className="px-10 py-5 text-gray-400 font-bold rounded-full
+                         hover:text-white hover:bg-white/5
+                         transition-all duration-300
+                         flex items-center justify-center gap-2"
+            >
+              Unsere Services
+              <ChevronDown className="w-5 h-5" />
+            </a>
+          </Magnetic>
         </div>
       </motion.div>
 

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { MessageSquare, LayoutGrid, User, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Magnetic from "./Magnetic";
 
 interface DockNavbarProps {
   onCtaClick: () => void;
@@ -58,25 +59,28 @@ export default function DockNavbar({ onCtaClick }: DockNavbarProps) {
             {/* Links */}
             <div className="flex items-center gap-1">
               {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="flex items-center gap-2 px-4 py-2 text-sm font-bold text-gray-400 hover:text-white hover:bg-white/5 rounded-full transition-all"
-                >
-                  <item.icon className="w-4 h-4" />
-                  {item.label}
-                </a>
+                <Magnetic key={item.label} strength={0.15}>
+                  <a
+                    href={item.href}
+                    className="flex items-center gap-2 px-4 py-2 text-sm font-bold text-gray-400 hover:text-white hover:bg-white/5 rounded-full transition-all"
+                  >
+                    <item.icon className="w-4 h-4" />
+                    {item.label}
+                  </a>
+                </Magnetic>
               ))}
             </div>
 
             {/* CTA */}
-            <button
-              onClick={onCtaClick}
-              className="ml-2 flex items-center gap-2 px-5 py-2.5 bg-white text-black text-sm font-bold rounded-full hover:bg-gray-200 transition-colors shadow-lg shadow-white/5"
-            >
-              <Phone className="w-4 h-4" />
-              Anfragen
-            </button>
+            <Magnetic strength={0.2}>
+              <button
+                onClick={onCtaClick}
+                className="ml-2 flex items-center gap-2 px-5 py-2.5 bg-white text-black text-sm font-bold rounded-full hover:bg-gray-200 transition-colors shadow-lg shadow-white/5"
+              >
+                <Phone className="w-4 h-4" />
+                Anfragen
+              </button>
+            </Magnetic>
           </nav>
         </motion.div>
       )}
