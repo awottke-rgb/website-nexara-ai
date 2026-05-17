@@ -64,8 +64,8 @@ export default function CtaSection({ onAnalyseClick }: CtaSectionProps) {
             {/* Calendar Side */}
             <div className="bg-white rounded-[32px] overflow-hidden border border-white/5 shadow-2xl h-[600px]">
               <iframe
-                src="https://cal.com/adrien-wottke-hogs97/15min"
-                title="Termin buchen"
+                src="https://calendar.app.google/9bcGNPWTyQuJR3KV6"
+                title="Termin buchen via Google Calendar"
                 width="100%"
                 height="100%"
                 frameBorder="0"

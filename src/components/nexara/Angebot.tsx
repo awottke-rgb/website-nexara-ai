@@ -32,7 +32,7 @@ const problems = [
 
 const features = [
   "Website bis zu 5 Seiten — klar, schnell, conversion-optimiert",
-  "Booking-System direkt integriert (Cal.com)",
+  "Booking-System direkt integriert (Google Calendar)",
   "Automatische Bestätigungs-E-Mail bei jeder Anfrage",
   "Kontaktformular mit automatischem Follow-up",
   "Mobile-First & Ladezeit unter 2,5 Sekunden",
