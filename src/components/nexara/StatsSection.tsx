@@ -2,6 +2,7 @@
 
 import { useCountUp } from "@/hooks/useCountUp";
 import { TrendingUp, Users, Zap } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface StatCardProps {
   icon: any;
@@ -31,32 +32,34 @@ function StatCard({ icon: Icon, value, suffix, label, description }: StatCardPro
   );
 }
 
+const stats = [
+  { icon: TrendingUp, value: 200, suffix: "%", label: "Mehr Anfragen", description: "Durchschnittliche Steigerung der Kontaktanfragen nach Optimierung." },
+  { icon: Users, value: 50, suffix: "+", label: "Kundenprojekte", description: "KMUs vertrauen auf unsere technische & strategische Expertise." },
+  { icon: Zap, value: 98, suffix: "+", label: "Lighthouse Score", description: "Wir bauen Websites, die nicht nur gut aussehen, sondern auch rasend schnell laden." },
+];
+
 export default function StatsSection() {
   return (
-    <section id="stats" className="py-24 sm:py-32">
+    <section id="stats" className="py-16 sm:py-20">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <StatCard
-            icon={TrendingUp}
-            value={200}
-            suffix="%"
-            label="Mehr Anfragen"
-            description="Durchschnittliche Steigerung der Kontaktanfragen nach Optimierung."
-          />
-          <StatCard
-            icon={Users}
-            value={50}
-            suffix="+"
-            label="Kundenprojekte"
-            description="KMUs vertrauen auf unsere technische & strategische Expertise."
-          />
-          <StatCard
-            icon={Zap}
-            value={98}
-            suffix="+"
-            label="Lighthouse Score"
-            description="Wir bauen Websites, die nicht nur gut aussehen, sondern auch rasend schnell laden."
-          />
+          {stats.map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.7, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <StatCard
+                icon={stat.icon}
+                value={stat.value}
+                suffix={stat.suffix}
+                label={stat.label}
+                description={stat.description}
+              />
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

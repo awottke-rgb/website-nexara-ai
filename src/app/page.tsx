@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Navbar from "@/components/nexara/Navbar";
+import DockNavbar from "@/components/nexara/DockNavbar";
 import HeroSection from "@/components/nexara/HeroSection";
 import ProblemSection from "@/components/nexara/ProblemSection";
 import AboutSection from "@/components/nexara/AboutSection";
@@ -35,7 +35,7 @@ export default function Home() {
 
   return (
     <>
-      <Navbar onCtaClick={() => openModal("navbar")} />
+      <DockNavbar onCtaClick={() => openModal("navbar")} />
 
       <main className="flex-1">
         <HeroSection onAnalyseClick={() => openModal("hero")} />

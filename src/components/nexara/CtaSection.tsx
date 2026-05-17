@@ -14,7 +14,7 @@ export default function CtaSection({ onAnalyseClick }: CtaSectionProps) {
   const [website, setWebsite] = useState("");
 
   return (
-    <section id="kontakt" className="py-32 sm:py-48" ref={ref}>
+    <section id="kontakt" className="py-16 sm:py-24" ref={ref}>
       <div className="max-w-6xl mx-auto px-6">
         <div
           className={`card-antigravity p-12 sm:p-20 shadow-2xl shadow-black/5 ${
@@ -64,7 +64,7 @@ export default function CtaSection({ onAnalyseClick }: CtaSectionProps) {
             {/* Calendar Side */}
             <div className="bg-white rounded-[32px] overflow-hidden border border-white/5 shadow-2xl h-[600px]">
               <iframe
-                src="https://cal.com/deinname/15min"
+                src="https://cal.com/adrien-wottke-hogs97/15min"
                 title="Termin buchen"
                 width="100%"
                 height="100%"

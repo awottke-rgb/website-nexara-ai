@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function AboutSection() {
   return (
-    <section id="ueber-mich" className="py-32 sm:py-48 overflow-hidden">
+    <section id="ueber-mich" className="py-16 sm:py-24 overflow-hidden">
       <div className="max-w-5xl mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center gap-20">
           {/* Photo Container */}

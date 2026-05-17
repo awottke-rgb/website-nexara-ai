@@ -26,11 +26,11 @@ export default function CustomCursor() {
 
   return (
     <div
-      className="fixed top-0 left-0 w-10 h-10 rounded-full pointer-events-none z-[9999] mix-blend-screen transition-transform duration-75 ease-out"
+      className="fixed top-0 left-0 w-[600px] h-[600px] rounded-full pointer-events-none z-[9999] opacity-30 mix-blend-soft-light transition-transform duration-300 ease-out"
       style={{
-        transform: `translate(${position.x - 20}px, ${position.y - 20}px)`,
-        background: "radial-gradient(circle, rgba(37, 99, 235, 0.4) 0%, transparent 70%)",
-        filter: "blur(4px)",
+        transform: `translate(${position.x - 300}px, ${position.y - 300}px)`,
+        background: "radial-gradient(circle, rgba(37, 99, 235, 0.2) 0%, transparent 70%)",
+        filter: "blur(60px)",
       }}
     />
   );

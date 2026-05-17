@@ -1,6 +1,6 @@
 "use client";
 
-import { useInView } from "@/hooks/useInView";
+import { motion } from "framer-motion";
 import { Check, X } from "lucide-react";
 
 const comparisonData = [
@@ -32,12 +32,16 @@ const comparisonData = [
 ];
 
 export default function ComparisonSection() {
-  const { ref, isInView } = useInView({ threshold: 0.1 });
-
   return (
-    <section id="vorteile" className="py-24 sm:py-32" ref={ref}>
+    <section id="vorteile" className="py-16 sm:py-24">
       <div className="max-w-5xl mx-auto px-6">
-        <div className={`text-center mb-16 ${isInView ? "section-visible" : "section-hidden"}`}>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center mb-16"
+        >
           <p className="text-brand-blue font-semibold text-sm tracking-widest uppercase mb-3">
             Der Unterschied
           </p>
@@ -48,9 +52,15 @@ export default function ComparisonSection() {
             Wir haben verstanden, was kleine und mittlere Unternehmen wirklich brauchen:
             Ergebnisse statt endloser Meetings.
           </p>
-        </div>
+        </motion.div>
 
-        <div className={`relative overflow-hidden rounded-3xl border border-white/10 bg-navy-card shadow-2xl ${isInView ? "section-visible stagger-1" : "section-hidden"}`}>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="relative overflow-hidden rounded-3xl border border-white/10 bg-navy-card shadow-2xl"
+        >
           {/* Header Row */}
           <div className="grid grid-cols-1 md:grid-cols-3 border-b border-white/10 bg-white/[0.02]">
             <div className="hidden md:block p-6"></div>
@@ -81,7 +91,7 @@ export default function ComparisonSection() {
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

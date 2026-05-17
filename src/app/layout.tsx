@@ -36,8 +36,8 @@ export default function RootLayout({
       lang="de"
       className={`${geistSans.variable} ${geistMono.variable} ${syne.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-
+      <body className="min-h-screen flex flex-col bg-navy text-foreground">
+        <div className="edge-glow" />
         {children}
         <MobileStickyCTA />
       </body>

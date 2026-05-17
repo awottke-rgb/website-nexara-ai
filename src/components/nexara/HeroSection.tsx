@@ -12,7 +12,7 @@ export default function HeroSection({ onAnalyseClick }: HeroSectionProps) {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden py-32"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden py-20 sm:py-24"
     >
       <AnimatedBackground />
 
@@ -27,9 +27,10 @@ export default function HeroSection({ onAnalyseClick }: HeroSectionProps) {
 
       {/* Content */}
       <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative z-10 max-w-5xl mx-auto px-6 text-center"
       >
         {/* Badge */}
@@ -42,8 +43,36 @@ export default function HeroSection({ onAnalyseClick }: HeroSectionProps) {
 
         {/* Headline */}
         <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight leading-[1.05] mb-10 font-display text-white">
-          Ihre Website. <br />
-          <span className="text-brand-blue italic">Neu definiert.</span>
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            {"Ihre Website.".split("").map((char, index) => (
+              <motion.span
+                key={index}
+                initial={{ opacity: 0, filter: "blur(10px)", scale: 0.8 }}
+                animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
+                transition={{ 
+                  duration: 0.4, 
+                  delay: index * 0.05,
+                  ease: [0.16, 1, 0.3, 1] 
+                }}
+                className="inline-block"
+              >
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            ))}
+          </motion.span>
+          <br />
+          <motion.span 
+            className="text-brand-blue italic inline-block"
+            initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 1, delay: 1.5, ease: "easeOut" }}
+          >
+            Neu definiert.
+          </motion.span>
         </h1>
 
         {/* Subline */}

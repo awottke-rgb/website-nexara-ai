@@ -5,17 +5,24 @@ import { useEffect, useRef } from "react";
 interface Particle {
   x: number;
   y: number;
-  radius: number;
+  z: number;
   baseX: number;
   baseY: number;
-  speed: number;
-  offset: number;
-  opacity: number;
+  baseZ: number;
+  vx: number;
+  vy: number;
+  vz: number;
+  length: number;
+  width: number;
+  rotation: number;
   color: string;
+  opacity: number;
 }
 
 export default function AnimatedBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const mouse = useRef({ x: 0, y: 0 });
+  const mouseActive = useRef(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -28,21 +35,21 @@ export default function AnimatedBackground() {
     let particles: Particle[] = [];
     let fadeOpacity = 0;
 
+    const colors = ["#2563EB", "#60A5FA", "#FFFFFF"];
+
     const resize = () => {
       const dpr = window.devicePixelRatio || 1;
       const rect = canvas.getBoundingClientRect();
       canvas.width = rect.width * dpr;
       canvas.height = rect.height * dpr;
       ctx.scale(dpr, dpr);
-      canvas.style.width = `${rect.width}px`;
-      canvas.style.height = `${rect.height}px`;
     };
 
     const createParticles = () => {
-      const count = Math.min(45, Math.max(25, Math.floor(window.innerWidth / 30)));
+      const count = 525;
       particles = [];
-      const w = canvas.getBoundingClientRect().width;
-      const h = canvas.getBoundingClientRect().height;
+      const w = window.innerWidth;
+      const h = window.innerHeight;
 
       for (let i = 0; i < count; i++) {
         const x = Math.random() * w;
@@ -50,73 +57,92 @@ export default function AnimatedBackground() {
         particles.push({
           x,
           y,
+          z: 0,
           baseX: x,
           baseY: y,
-          radius: Math.random() * 2 + 0.8,
-          speed: Math.random() * 0.3 + 0.1,
-          offset: Math.random() * Math.PI * 2,
-          opacity: Math.random() * 0.12 + 0.06,
-          color: Math.random() > 0.3 ? "#2563EB" : "#FFFFFF",
+          baseZ: 0,
+          vx: 0,
+          vy: 0,
+          vz: 0,
+          length: Math.random() * 3 + 1.5,
+          width: Math.random() * 3 + 1.5,
+          rotation: Math.random() * Math.PI * 2,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          opacity: Math.random() * 0.6 + 0.4, // Higher base opacity
         });
       }
     };
 
-    const drawConnections = (p1: Particle, p2: Particle, dist: number, maxDist: number) => {
-      const opacity = (1 - dist / maxDist) * 0.04 * fadeOpacity;
-      ctx.beginPath();
-      ctx.strokeStyle = `rgba(37, 99, 235, ${opacity})`;
-      ctx.lineWidth = 0.5;
-      ctx.moveTo(p1.x, p1.y);
-      ctx.lineTo(p2.x, p2.y);
-      ctx.stroke();
-    };
-
     const animate = (time: number) => {
-      const rect = canvas.getBoundingClientRect();
-      ctx.clearRect(0, 0, rect.width, rect.height);
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      ctx.clearRect(0, 0, w, h);
 
-      // Fade in
-      if (fadeOpacity < 1) {
-        fadeOpacity = Math.min(1, fadeOpacity + 0.008);
-      }
+      if (fadeOpacity < 1) fadeOpacity += 0.01;
 
-      const t = time * 0.001;
-      const maxConnectionDist = 150;
+      const centerX = mouseActive.current ? mouse.current.x : w / 2;
+      const centerY = mouseActive.current ? mouse.current.y : h / 2;
 
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        // Sine-wave floating motion
-        p.x = p.baseX + Math.sin(t * p.speed + p.offset) * 40;
-        p.y = p.baseY + Math.cos(t * p.speed * 0.7 + p.offset) * 30;
+      // Pulse effect math
+      const pulse = Math.sin(time * 0.002) * 30;
+      const dynamicRadius = 350 + pulse;
 
-        // Wrap around edges
-        const w = rect.width;
-        const h = rect.height;
-        if (p.x < -20) p.baseX += w + 40;
-        if (p.x > w + 20) p.baseX -= w + 40;
-        if (p.y < -20) p.baseY += h + 40;
-        if (p.y > h + 20) p.baseY -= h + 40;
-
-        // Draw particle
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle =
-          p.color === "#2563EB"
-            ? `rgba(37, 99, 235, ${p.opacity * fadeOpacity})`
-            : `rgba(255, 255, 255, ${p.opacity * fadeOpacity})`;
-        ctx.fill();
-
-        // Draw connections
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          const dx = p.x - p2.x;
-          const dy = p.y - p2.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < maxConnectionDist) {
-            drawConnections(p, p2, dist, maxConnectionDist);
-          }
+      particles.forEach((p) => {
+        const dx = p.baseX - centerX;
+        const dy = p.baseY - centerY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        
+        let targetZ = 0;
+        let opacityMultiplier = 0;
+        
+        if (mouseActive.current && dist < dynamicRadius) {
+          // Semi-sphere with pulse influence
+          targetZ = Math.sqrt(Math.pow(dynamicRadius, 2) - Math.pow(dist, 2)) * 0.6;
+          
+          // Sharper fade-out for higher contrast spotlight
+          opacityMultiplier = Math.pow(Math.max(0, 1 - (dist / dynamicRadius)), 0.7);
         }
-      }
+
+        const pushForce = targetZ * 0.2;
+        const angle = Math.atan2(dy, dx);
+        
+        const targetX = p.baseX + Math.cos(angle) * pushForce;
+        const targetY = p.baseY + Math.sin(angle) * pushForce;
+
+        p.x += (targetX - p.x) * 0.1;
+        p.y += (targetY - p.y) * 0.1;
+        p.z += (targetZ - p.z) * 0.1;
+
+        const focalLength = 800;
+        const scale = focalLength / (focalLength - p.z);
+        
+        const screenX = centerX + (p.x - centerX) * scale;
+        const screenY = centerY + (p.y - centerY) * scale;
+
+        // Skip drawing if invisible
+        if (opacityMultiplier <= 0) return;
+
+        ctx.save();
+        ctx.translate(screenX, screenY);
+        // Boost overall opacity for contrast
+        ctx.globalAlpha = p.opacity * fadeOpacity * opacityMultiplier * (scale * 0.6 + 0.4);
+        ctx.fillStyle = p.color;
+        
+        const size = p.width * scale;
+        
+        ctx.beginPath();
+        ctx.arc(0, 0, size / 2, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Stronger glow
+        if (p.z > 20) {
+          ctx.shadowBlur = p.z * 0.3;
+          ctx.shadowColor = p.color;
+          ctx.fill();
+        }
+        
+        ctx.restore();
+      });
 
       animationId = requestAnimationFrame(animate);
     };
@@ -125,23 +151,43 @@ export default function AnimatedBackground() {
     createParticles();
     animationId = requestAnimationFrame(animate);
 
-    const handleResize = () => {
-      resize();
-      createParticles();
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+
+      // Check if mouse is within canvas bounds
+      if (
+        mouseX >= 0 &&
+        mouseX <= rect.width &&
+        mouseY >= 0 &&
+        mouseY <= rect.height
+      ) {
+        mouse.current = { x: mouseX, y: mouseY };
+        mouseActive.current = true;
+      } else {
+        mouseActive.current = false;
+      }
     };
-    window.addEventListener("resize", handleResize);
+
+    window.addEventListener("resize", resize);
+    window.addEventListener("mousemove", handleMouseMove);
 
     return () => {
       cancelAnimationFrame(animationId);
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", resize);
+      window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none"
-      aria-hidden="true"
+      className="absolute inset-0 w-full h-full pointer-events-none z-0"
+      style={{
+        maskImage: "linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)",
+        WebkitMaskImage: "linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)",
+      }}
     />
   );
 }
