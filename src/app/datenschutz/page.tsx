@@ -189,8 +189,8 @@ export default function Datenschutz() {
               <h2 className="text-2xl font-bold font-display text-white mb-4">Verantwortlicher</h2>
               <div className="bg-navy/50 border border-border/80 rounded-2xl p-6 font-mono text-sm text-gray-300 space-y-2">
                 <p className="font-bold text-white">Adrien Wottke</p>
-                <p>Brösaer Dorfstraße 21</p>
-                <p>02694 Bautzen</p>
+                <p>Brösaer Dorfstraße 29</p>
+                <p>02694 Malschwitz OT Brösa</p>
                 <p className="pt-2">
                   E-Mail-Adresse:{" "}
                   <a href="mailto:a.wottke@nexara-ai.de" className="text-brand-blue-light hover:underline">

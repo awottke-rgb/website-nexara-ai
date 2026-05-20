@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, Landmark, Mail, MapPin } from "lucide-react";
+import { ArrowLeft, Landmark, Mail, Phone, ShieldCheck, HelpCircle, FileText, Scale } from "lucide-react";
 import Footer from "@/components/nexara/Footer";
 
 export const metadata = {
@@ -44,21 +44,21 @@ export default function Impressum() {
       </section>
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-4xl mx-auto w-full px-6 pb-32 relative z-10">
+      <main className="flex-1 max-w-4xl mx-auto w-full px-6 pb-32 relative z-10 space-y-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Angaben Card */}
           <div className="card-antigravity p-8 flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <div className="p-2.5 rounded-xl bg-brand-blue/10 border border-brand-blue/20 text-brand-blue-light">
-                  <MapPin className="w-5 h-5" />
+                  <Landmark className="w-5 h-5" />
                 </div>
                 <h2 className="text-xl font-bold font-display text-white">Angaben gemäß § 5 TMG</h2>
               </div>
               <p className="text-gray-300 leading-relaxed font-medium">
                 Adrien Wottke<br />
-                Brösaer Dorfstraße 21<br />
-                02694 Bautzen<br />
+                Brösaer Dorfstraße 29<br />
+                02694 Malschwitz OT Brösa<br />
                 Deutschland
               </p>
             </div>
@@ -73,16 +73,85 @@ export default function Impressum() {
                 </div>
                 <h2 className="text-xl font-bold font-display text-white">Kontakt</h2>
               </div>
-              <p className="text-gray-300 leading-relaxed font-medium mb-4">
-                Für Anfragen, Kooperationen oder Support erreichen Sie uns per E-Mail:
-              </p>
-              <p className="font-mono text-sm">
-                <a href="mailto:a.wottke@nexara-ai.de" className="text-brand-blue-light hover:underline text-base font-semibold">
-                  a.wottke@nexara-ai.de
-                </a>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3 text-gray-300">
+                  <Phone className="w-4 h-4 text-brand-blue-light flex-shrink-0" />
+                  <a href="tel:+491603233104" className="hover:text-white transition-colors font-mono">
+                    +49 160 3233104
+                  </a>
+                </div>
+                <div className="flex items-center gap-3 text-gray-300">
+                  <Mail className="w-4 h-4 text-brand-blue-light flex-shrink-0" />
+                  <a href="mailto:a.wottke@nexara-ai.de" className="hover:text-white transition-colors font-mono">
+                    a.wottke@nexara-ai.de
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Redaktionell Verantwortlich */}
+          <div className="card-antigravity p-8 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-2.5 rounded-xl bg-brand-blue/10 border border-brand-blue/20 text-brand-blue-light">
+                  <ShieldCheck className="w-5 h-5" />
+                </div>
+                <h2 className="text-xl font-bold font-display text-white">Redaktionell verantwortlich</h2>
+              </div>
+              <p className="text-gray-300 leading-relaxed font-medium">
+                Adrien Wottke<br />
+                Brösaer Dorfstraße 29<br />
+                02694 Malschwitz
               </p>
             </div>
           </div>
+
+          {/* Umsatzsteuer-ID Card */}
+          <div className="card-antigravity p-8 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-2.5 rounded-xl bg-brand-blue/10 border border-brand-blue/20 text-brand-blue-light">
+                  <FileText className="w-5 h-5" />
+                </div>
+                <h2 className="text-xl font-bold font-display text-white">Umsatzsteuer-ID</h2>
+              </div>
+              <p className="text-gray-300 leading-relaxed text-sm">
+                Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br />
+                <span className="font-mono text-brand-blue-light font-semibold mt-1 block">Wird nachgereicht</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Streitbeilegung Card */}
+        <div className="card-antigravity p-8">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="p-2.5 rounded-xl bg-brand-blue/10 border border-brand-blue/20 text-brand-blue-light">
+              <Scale className="w-5 h-5" />
+            </div>
+            <h2 className="text-xl font-bold font-display text-white">Verbraucherstreitbeilegung</h2>
+          </div>
+          <p className="text-gray-300 leading-relaxed text-sm">
+            Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+          </p>
+        </div>
+
+        {/* Quelle */}
+        <div className="pt-6 border-t border-border flex justify-center text-center">
+          <p className="text-xs text-gray-500 font-medium">
+            Quelle:{" "}
+            <a 
+              href="https://www.e-recht24.de/impressum-generator.html" 
+              target="_blank" 
+              rel="nofollow noopener noreferrer" 
+              className="hover:text-brand-blue-light transition-colors inline-flex items-center gap-0.5"
+            >
+              <span>e-recht24.de Impressum-Generator</span>
+            </a>
+          </p>
         </div>
       </main>
 
