@@ -8,6 +8,7 @@ import ProblemSection from "@/components/nexara/ProblemSection";
 import AboutSection from "@/components/nexara/AboutSection";
 import WhySection from "@/components/nexara/WhySection";
 import ServicesSection from "@/components/nexara/ServicesSection";
+import OvernightSection from "@/components/nexara/OvernightSection";
 import InteractiveShowcase from "@/components/nexara/InteractiveShowcase";
 import HowItWorksSection from "@/components/nexara/HowItWorksSection";
 import ComparisonSection from "@/components/nexara/ComparisonSection";
@@ -49,6 +50,9 @@ export default function Home() {
         </FadeInSection>
         <FadeInSection>
           <ServicesSection />
+        </FadeInSection>
+        <FadeInSection>
+          <OvernightSection />
         </FadeInSection>
         <FadeInSection>
           <InteractiveShowcase />
