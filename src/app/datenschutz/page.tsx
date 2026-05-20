@@ -188,13 +188,13 @@ export default function Datenschutz() {
             <section id="m3" className="scroll-mt-32 card-antigravity p-8">
               <h2 className="text-2xl font-bold font-display text-white mb-4">Verantwortlicher</h2>
               <div className="bg-navy/50 border border-border/80 rounded-2xl p-6 font-mono text-sm text-gray-300 space-y-2">
-                <p className="font-bold text-white">Vorname, Name / Firma</p>
-                <p>Straße, Hausnr.</p>
-                <p>PLZ, Ort, Land</p>
+                <p className="font-bold text-white">Adrien Wottke</p>
+                <p>Brösaer Dorfstraße 21</p>
+                <p>02694 Bautzen</p>
                 <p className="pt-2">
                   E-Mail-Adresse:{" "}
-                  <a href="mailto:vorname.name@beispielsdomain.eu" className="text-brand-blue-light hover:underline">
-                    vorname.name@beispielsdomain.eu
+                  <a href="mailto:a.wottke@nexara-ai.de" className="text-brand-blue-light hover:underline">
+                    a.wottke@nexara-ai.de
                   </a>
                 </p>
               </div>
