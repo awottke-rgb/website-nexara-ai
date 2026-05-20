@@ -60,9 +60,7 @@ export default function AboutSection() {
               <span className="text-brand-blue italic">Mittelstand.</span>
             </h2>
             <p className="text-lg sm:text-xl text-gray-400 leading-relaxed font-medium mb-10">
-              Maschinenbau-Student, 3 Jahre Formula Student, Sales-Erfahrung — 
-              ich verstehe technische Prozesse und spreche die Sprache des Mittelstands. 
-              Wir bauen nicht nur Websites, wir bauen digitale Werkzeuge für Ihren Erfolg.
+              Ich kenne den Mittelstand aus erster Hand: Meine Eltern sind seit über 30 Jahren selbstständig, und durch mein Maschinenbau-Studium sowie 3 Jahre in der Formula Student weiß ich, dass es am Ende auf zwei Dinge ankommt: absolute Präzision und messbare Performance. Ich baue keine bloßen Online-Visitenkarten – ich entwickle digitale Werkzeuge, die Ihren Betrieb spürbar entlasten und neue Kunden gewinnen.
             </p>
 
             <a 

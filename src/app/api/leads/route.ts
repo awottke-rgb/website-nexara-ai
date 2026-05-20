@@ -3,13 +3,14 @@ import { supabase } from '@/lib/supabase';
 
 export async function POST(request: Request) {
   try {
-    const { email, source } = await request.json();
+    const { email, website, source } = await request.json();
 
     if (!email || typeof email !== 'string') {
       return NextResponse.json({ error: 'E-Mail ist erforderlich' }, { status: 400 });
     }
 
     const trimmedEmail = email.trim().toLowerCase();
+    const trimmedWebsite = website ? website.trim() : '';
     
     // Basic regex check
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
@@ -20,7 +21,7 @@ export async function POST(request: Request) {
     // we'll simulate a successful DB operation if the client isn't fully setup.
     // This allows the UI to work before the backend is fully wired up.
     if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-      console.log('Mock saving lead (Supabase not configured):', { email: trimmedEmail, source });
+      console.log('Mock saving lead (Supabase not configured):', { email: trimmedEmail, website: trimmedWebsite, source });
       // Simulate network latency
       await new Promise(resolve => setTimeout(resolve, 800));
       return NextResponse.json({ success: true, mocked: true });
@@ -28,7 +29,7 @@ export async function POST(request: Request) {
 
     const { error } = await supabase
       .from('leads')
-      .insert([{ email: trimmedEmail, source: source || 'unknown' }]);
+      .insert([{ email: trimmedEmail, website: trimmedWebsite, source: source || 'unknown' }]);
 
     if (error) {
       if (error.code === '23505') { // unique constraint violation

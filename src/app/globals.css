@@ -33,7 +33,7 @@
   --color-border-hover: var(--border-hover);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-display: var(--font-syne);
+  --font-display: var(--font-epilogue);
 }
 
 html {
@@ -56,8 +56,48 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-syne), sans-serif;
+  font-family: var(--font-epilogue), sans-serif;
   color: #FFFFFF;
+}
+
+/* Antigravity Breathing Glow Animations */
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1) translate(0px, 0px);
+    opacity: 0.45;
+  }
+  33% {
+    transform: scale(1.1) translate(40px, -30px);
+    opacity: 0.65;
+  }
+  66% {
+    transform: scale(0.95) translate(-30px, 40px);
+    opacity: 0.5;
+  }
+}
+
+@keyframes pulseGlowPurple {
+  0%, 100% {
+    transform: scale(1) translate(0px, 0px);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scale(1.18) translate(-40px, 30px);
+    opacity: 0.55;
+  }
+}
+
+.animate-glow-blue-1 {
+  animation: pulseGlow 18s infinite ease-in-out;
+}
+
+.animate-glow-blue-2 {
+  animation: pulseGlow 22s infinite ease-in-out;
+  animation-delay: -5s;
+}
+
+.animate-glow-purple {
+  animation: pulseGlowPurple 16s infinite ease-in-out;
 }
 
 /* Antigravity Edge Glow */
@@ -66,11 +106,16 @@ h6 {
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background: radial-gradient(
-    circle at 50% 50%,
-    transparent 40%,
-    rgba(37, 99, 235, 0.08) 100%
-  );
+  background: radial-gradient(circle at 50% 50%,
+      transparent 40%,
+      rgba(37, 99, 235, 0.08) 100%);
+}
+
+.grid-pattern {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
 }
 
 /* Micro-interactions */
@@ -89,16 +134,19 @@ h6 {
 }
 
 .card-antigravity {
-  background: var(--navy-card);
-  border: 1px solid var(--border);
+  background: rgba(8, 12, 24, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 40px;
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card-antigravity:hover {
-  border-color: rgba(37, 99, 235, 0.3);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-  transform: translateY(-4px);
+  border-color: rgba(37, 99, 235, 0.35);
+  background: rgba(8, 12, 24, 0.6);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(37, 99, 235, 0.15);
+  transform: translateY(-5px);
 }
 
 /* Scroll-triggered section animations */

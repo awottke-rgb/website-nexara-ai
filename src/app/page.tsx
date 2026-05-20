@@ -1,52 +1,52 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import Navbar from "@/components/nexara/Navbar";
 import DockNavbar from "@/components/nexara/DockNavbar";
 import HeroSection from "@/components/nexara/HeroSection";
 import ProblemSection from "@/components/nexara/ProblemSection";
 import AboutSection from "@/components/nexara/AboutSection";
+import WhySection from "@/components/nexara/WhySection";
 import ServicesSection from "@/components/nexara/ServicesSection";
+import InteractiveShowcase from "@/components/nexara/InteractiveShowcase";
 import HowItWorksSection from "@/components/nexara/HowItWorksSection";
 import ComparisonSection from "@/components/nexara/ComparisonSection";
-import StatsSection from "@/components/nexara/StatsSection";
 import Angebot from "@/components/nexara/Angebot";
 import CtaSection from "@/components/nexara/CtaSection";
 import Footer from "@/components/nexara/Footer";
 import LeadModal from "@/components/nexara/LeadModal";
 import FadeInSection from "@/components/nexara/FadeInSection";
-import { useExitIntent } from "@/hooks/useExitIntent";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalSource, setModalSource] = useState("hero");
+  const [prefillEmail, setPrefillEmail] = useState("");
+  const [prefillWebsite, setPrefillWebsite] = useState("");
 
-  const { hasTriggered } = useExitIntent(5000); // 5 seconds delay before active
-
-  useEffect(() => {
-    if (hasTriggered && !isModalOpen) {
-      setModalSource("exit");
-      setIsModalOpen(true);
-    }
-  }, [hasTriggered]);
-
-  const openModal = (source: string) => {
+  const openModal = (source: string, email = "", website = "") => {
     setModalSource(source);
+    setPrefillEmail(email);
+    setPrefillWebsite(website);
     setIsModalOpen(true);
+  };
+
+  const scrollToKontakt = () => {
+    const el = document.getElementById("kontakt");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
     <>
-      <DockNavbar onCtaClick={() => openModal("navbar")} />
+      <Navbar onCtaClick={scrollToKontakt} />
+      <DockNavbar onCtaClick={scrollToKontakt} />
 
       <main className="flex-1">
-        <HeroSection onAnalyseClick={() => openModal("hero")} />
+        <HeroSection onAnalyseClick={scrollToKontakt} />
 
         <FadeInSection>
           <ProblemSection />
-        </FadeInSection>
-
-        <FadeInSection>
-          <AboutSection />
         </FadeInSection>
 
         <FadeInSection>
@@ -54,7 +54,19 @@ export default function Home() {
         </FadeInSection>
 
         <FadeInSection>
+          <InteractiveShowcase />
+        </FadeInSection>
+
+        <FadeInSection>
           <ComparisonSection />
+        </FadeInSection>
+
+        <FadeInSection>
+          <AboutSection />
+        </FadeInSection>
+
+        <FadeInSection>
+          <WhySection />
         </FadeInSection>
 
         <FadeInSection>
@@ -66,7 +78,7 @@ export default function Home() {
         </FadeInSection>
 
         <FadeInSection>
-          <CtaSection onAnalyseClick={() => openModal("bottom_cta")} />
+          <CtaSection onAnalyseClick={(email, website) => openModal("bottom_cta", email, website)} />
         </FadeInSection>
       </main>
 
@@ -76,6 +88,8 @@ export default function Home() {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         source={modalSource}
+        initialEmail={prefillEmail}
+        initialWebsite={prefillWebsite}
       />
     </>
   );

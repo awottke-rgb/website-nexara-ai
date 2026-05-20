@@ -35,7 +35,7 @@ export default function Navbar({ onCtaClick }: NavbarProps) {
   return (
     <nav
       id="navbar"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 md:hidden ${
         scrolled
           ? "bg-navy/80 backdrop-blur-xl border-b border-border shadow-lg shadow-black/20"
           : "bg-transparent"
@@ -43,14 +43,20 @@ export default function Navbar({ onCtaClick }: NavbarProps) {
     >
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2 group">
-          <Image 
-            src="/logo.svg" 
-            alt="Nexara AI" 
-            width={160}
-            height={40}
-            className="h-8 w-auto invert opacity-90 group-hover:opacity-100 transition-opacity" 
-          />
+        <a href="#" className="flex items-center gap-3 group">
+          <div className="relative w-8 h-8 flex-shrink-0">
+            <Image 
+              src="/icon.svg" 
+              alt="Nexara AI Logo" 
+              fill
+              className="object-contain opacity-95 group-hover:opacity-100 transition-opacity" 
+              priority
+            />
+          </div>
+          <span className="flex items-center gap-1.5 font-display text-2xl font-bold tracking-tight text-white select-none">
+            <span>Nexara</span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-blue to-brand-blue-light font-sans font-extrabold">AI</span>
+          </span>
         </a>
 
         {/* CTA */}

@@ -8,17 +8,22 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-12">
           {/* Brand */}
           <div className="flex flex-col items-center md:items-start">
-            <Link href="/" className="flex items-center gap-2 mb-6 group">
-              <Image 
-                src="/logo.svg" 
-                alt="Nexara AI" 
-                width={160}
-                height={40}
-                className="h-8 w-auto invert opacity-90 group-hover:opacity-100 transition-opacity" 
-              />
+            <Link href="/" className="flex items-center gap-3 mb-6 group">
+              <div className="relative w-8 h-8 flex-shrink-0">
+                <Image 
+                  src="/icon.svg" 
+                  alt="Nexara AI Logo" 
+                  fill
+                  className="object-contain opacity-95 group-hover:opacity-100 transition-opacity" 
+                />
+              </div>
+              <span className="flex items-center gap-1.5 font-display text-2xl font-bold tracking-tight text-white select-none">
+                <span>Nexara</span>
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-blue to-brand-blue-light font-sans font-extrabold">AI</span>
+              </span>
             </Link>
             <p className="text-gray-400 text-sm max-w-xs text-center md:text-left">
-              KI-gestützte Digitalagentur. Wir entwickeln Webseiten, die Kunden
+              KI-gestützte Digitalagentur. Ich entwickle Webseiten, die Kunden
               gewinnen.
             </p>
           </div>

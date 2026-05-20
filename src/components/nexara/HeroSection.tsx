@@ -71,7 +71,7 @@ export default function HeroSection({ onAnalyseClick }: HeroSectionProps) {
         {/* Subline */}
         <div className="max-w-2xl mx-auto mb-12 flex justify-center">
           <TypingText 
-            text="Wir bauen digitale Erlebnisse, die Ihre Konkurrenz alt aussehen lassen. Performance-fokussiert, KI-gestützt und kompromisslos im Design."
+            text="Ich baue digitale Erlebnisse, die Ihre Konkurrenz alt aussehen lassen. Performance-fokussiert, KI-gestützt und kompromisslos im Design."
             className="text-gray-400 text-lg sm:text-xl font-medium leading-relaxed justify-center"
           />
         </div>
@@ -98,7 +98,7 @@ export default function HeroSection({ onAnalyseClick }: HeroSectionProps) {
                          transition-all duration-300
                          flex items-center justify-center gap-2"
             >
-              Unsere Services
+              Meine Services
               <ChevronDown className="w-5 h-5" />
             </a>
           </Magnetic>

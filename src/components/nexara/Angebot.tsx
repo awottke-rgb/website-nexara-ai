@@ -7,7 +7,8 @@ import {
   CheckCircle2, 
   XCircle, 
   ArrowRight,
-  ChevronRight
+  ChevronRight,
+  BarChart3
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Magnetic from "./Magnetic";
@@ -30,29 +31,23 @@ const problems = [
   },
 ];
 
-const features = [
-  "Website bis zu 5 Seiten — klar, schnell, conversion-optimiert",
-  "Booking-System direkt integriert (Google Calendar)",
-  "Automatische Bestätigungs-E-Mail bei jeder Anfrage",
-  "Kontaktformular mit automatischem Follow-up",
-  "Mobile-First & Ladezeit unter 2,5 Sekunden",
-  "Analytics-Setup (damit Sie sehen was funktioniert)",
-  "7 Tage Post-Launch-Korrekturen",
-  "30-Tage Performance-Report nach Launch",
-  "60-minütiges Übergabe-Meeting + schriftliche Dokumentation",
+const pains = [
+  "Unqualifizierte Anfragen, die Ihre wertvolle Zeit im Tagesgeschäft rauben",
+  "15-Sekunden-Absprünge von potenziellen Kunden wegen unklarer Botschaften",
+  "Manuelles Hinterhertelefonieren bei unvollständigen Anfragen",
+  "Absoluter Blindflug ohne Daten darüber, was Besucher auf Ihrer Seite tun",
+  "Technische Kopfschmerzen, lahme Ladezeiten und ständige Wartungsangst",
 ];
 
-const nonFeatures = [
-  "Keine bezahlten Anzeigen oder Ad-Management",
-  "Kein E-Mail-Marketing",
-  "Keine laufende Wartung nach 7 Tagen",
+const outcomes = [
+  "Ein digitaler Flaggschiff-Auftritt, der sofort Vertrauen und Premium-Preise rechtfertigt",
+  "Automatisches Lead-Capturing & Vorqualifizierung auf absolutem Autopilot",
+  "Erstklassig vorqualifizierte Termine direkt in Ihrem Kalender, während Sie arbeiten",
+  "Glasklare Daten und Transparenz über das Verhalten Ihrer profitabelsten Besucher",
+  "Ein absolut sorgenfreier Launch — ich übernehme die komplette technische Abwicklung",
 ];
 
-const timeline = [
-  { step: "Step 1", title: "Kickoff & Analyse", duration: "Tag 1–2" },
-  { step: "Step 2", title: "Design & Entwicklung", duration: "Tag 3–16" },
-  { step: "Step 3", title: "Launch & Optimierung", duration: "Tag 17–30" },
-];
+
 
 export default function Angebot() {
   return (
@@ -75,7 +70,8 @@ export default function Angebot() {
             Ich optimiere Ihre Website so, dass Interessenten nicht mehr nach 15 Sekunden abspringen — sondern einen Termin buchen.
           </p>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-blue/10 border border-brand-blue/20">
-            <span className="text-brand-blue text-sm font-bold tracking-wider">📊 Messbar. 60 Tage nach Launch.</span>
+            <BarChart3 className="w-4 h-4 text-brand-blue" />
+            <span className="text-brand-blue text-sm font-bold tracking-wider">Messbar. 60 Tage nach Launch.</span>
           </div>
         </motion.div>
 
@@ -111,106 +107,95 @@ export default function Angebot() {
                   }}
                 />
                 <div className="relative z-20">
-                  <div className="w-12 h-12 rounded-xl bg-brand-blue/10 flex items-center justify-center mb-6 border border-brand-blue/20">
-                    <item.icon className="w-6 h-6 text-brand-blue" />
+                  <div className="w-12 h-12 rounded-xl bg-brand-blue/10 flex items-center justify-center mb-6 border border-brand-blue/20 flex-shrink-0">
+                    <item.icon className="w-6 h-6 text-brand-blue flex-shrink-0" size={24} style={{ width: '24px', height: '24px' }} />
                   </div>
-                  <h4 className="text-xl font-bold text-white mb-4 font-display leading-tight">{item.title}</h4>
-                  <p className="text-gray-400 font-medium leading-relaxed">{item.description}</p>
+                  <h4 className="text-xl font-bold text-white mb-3 font-display leading-snug py-1">{item.title}</h4>
+                  <p className="text-gray-400 font-medium leading-relaxed py-0.5">{item.description}</p>
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
 
-        {/* BLOCK 3: WAS ICH LIEFERE */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-32 items-start">
+        {/* BLOCK 3: PAIN VS OUTCOME TRANSFORMATION */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-32 items-stretch">
+          {/* Left Column: Pain Points */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            className="bg-white/[0.01] border border-white/5 rounded-3xl p-10 flex flex-col justify-between"
           >
-            <h3 className="text-3xl font-bold text-white mb-10 font-display">Was Sie bekommen</h3>
-            <ul className="space-y-5">
-              {features.map((feature, i) => (
-                <li key={i} className="flex items-start gap-4 text-gray-300 font-medium group">
-                  <CheckCircle2 className="w-6 h-6 text-brand-blue flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
+            <div>
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 font-display">
+                Was Sie <span className="text-red-500/80">hinter sich lassen</span>
+              </h3>
+              <p className="text-gray-500 text-sm mb-8 font-medium">
+                Schluss mit ineffizienten Prozessen und Websites, die zwar gut aussehen, aber keine Resultate liefern.
+              </p>
+              <ul className="space-y-6">
+                {pains.map((pain, i) => (
+                  <li key={i} className="flex items-start gap-4 text-gray-400 font-medium group">
+                    <XCircle className="w-6 h-6 text-red-500/50 flex-shrink-0 mt-0.5" />
+                    <span>{pain}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </motion.div>
 
+          {/* Right Column: Dream Outcome */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:pt-12"
+            className="bg-brand-blue/5 border border-brand-blue/20 rounded-3xl p-10 flex flex-col justify-between relative overflow-hidden"
           >
-            <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-10 opacity-70">
-              <h3 className="text-xl font-bold text-white/80 mb-8 font-display">Was Sie nicht bekommen</h3>
-              <ul className="space-y-4">
-                {nonFeatures.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-gray-500 text-sm font-medium">
-                    <XCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                    <span>{item}</span>
+            {/* Subtle glow */}
+            <div className="absolute -top-12 -right-12 w-48 h-48 bg-brand-blue/10 blur-3xl pointer-events-none" />
+            
+            <div className="relative z-10">
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 font-display">
+                Was wir <span className="text-brand-blue">gemeinsam bauen</span>
+              </h3>
+              <p className="text-gray-400 text-sm mb-8 font-medium">
+                Ein vollständig automatisiertes, conversion-optimiertes Kundengewinnungs-System für Ihr Unternehmen.
+              </p>
+              <ul className="space-y-6">
+                {outcomes.map((outcome, i) => (
+                  <li key={i} className="flex items-start gap-4 text-gray-200 font-medium group">
+                    <CheckCircle2 className="w-6 h-6 text-brand-blue flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                    <span className="group-hover:text-white transition-colors">{outcome}</span>
                   </li>
                 ))}
-                <li className="pl-8 text-xs text-gray-600 italic">
-                  → Optional buchbar ab 99 €/Monat
-                </li>
               </ul>
             </div>
           </motion.div>
         </div>
 
-        {/* BLOCK 4: WIE ES FUNKTIONIERT */}
-        <div className="mb-32">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 relative">
-            {/* Timeline Line */}
-            <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-brand-blue/20 to-transparent hidden md:block" />
-            
-            {timeline.map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.2 }}
-                className="relative z-10 flex flex-col items-center text-center p-8"
-              >
-                <div className="w-12 h-12 rounded-full bg-navy border-2 border-brand-blue flex items-center justify-center mb-6 shadow-xl shadow-brand-blue/20">
-                  <span className="text-white font-bold text-sm">{i + 1}</span>
-                </div>
-                <h4 className="text-white font-bold mb-2">{step.title}</h4>
-                <p className="text-brand-blue text-sm font-bold uppercase tracking-widest">{step.duration}</p>
-              </motion.div>
-            ))}
-          </div>
-          <p className="text-center text-gray-500 text-xs mt-8 italic">
-            Die Uhr startet, wenn alle Unterlagen vollständig eingegangen sind.
-          </p>
-        </div>
+
 
         {/* BLOCK 5: OPTIONAL ADD-ONS */}
-        <div className="mb-32 max-w-4xl mx-auto">
+        <div className="mb-32 max-w-5xl mx-auto px-4">
           <motion.h3 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-center text-gray-500 text-lg font-bold font-display uppercase tracking-widest mb-12"
+            className="text-center text-gray-400 text-sm sm:text-base font-bold font-display uppercase tracking-[0.25em] mb-16"
           >
             Optionale Erweiterungen
           </motion.h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="border border-white/5 rounded-2xl p-8 flex flex-col items-center text-center group hover:border-brand-blue/20 transition-colors">
-              <h4 className="text-white font-bold mb-2">Wartungs-Paket Basic</h4>
-              <p className="text-brand-blue font-bold text-sm mb-4">99 €/Monat</p>
-              <p className="text-gray-500 text-sm">Hosting, Sicherheitsupdates, 1h Änderungen/Monat</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="card-antigravity border border-white/5 rounded-3xl p-10 flex flex-col items-center text-center group hover:border-brand-blue/30 transition-all duration-300 relative overflow-hidden bg-white/[0.01]">
+              <h4 className="text-xl sm:text-2xl font-bold text-white mb-3 font-display">Wartungs-Paket Basic</h4>
+              <p className="text-brand-blue font-extrabold text-2xl sm:text-3xl mb-6 font-display">99 €<span className="text-gray-500 text-sm font-medium"> / Monat</span></p>
+              <p className="text-gray-400 text-base sm:text-lg font-medium leading-relaxed">Hosting, Sicherheitsupdates & 1h flexible Änderungen pro Monat</p>
             </div>
-            <div className="border border-white/5 rounded-2xl p-8 flex flex-col items-center text-center group hover:border-brand-blue/20 transition-colors">
-              <h4 className="text-white font-bold mb-2">Wartungs-Paket Pro</h4>
-              <p className="text-brand-blue font-bold text-sm mb-4">199 €/Monat</p>
-              <p className="text-gray-500 text-sm">+ monatlicher Conversion-Report, bis zu 3h Änderungen/Monat</p>
+            <div className="card-antigravity border border-white/5 rounded-3xl p-10 flex flex-col items-center text-center group hover:border-brand-blue/30 transition-all duration-300 relative overflow-hidden bg-white/[0.01]">
+              <h4 className="text-xl sm:text-2xl font-bold text-white mb-3 font-display">Wartungs-Paket Pro</h4>
+              <p className="text-brand-blue font-extrabold text-2xl sm:text-3xl mb-6 font-display">199 €<span className="text-gray-500 text-sm font-medium"> / Monat</span></p>
+              <p className="text-gray-400 text-base sm:text-lg font-medium leading-relaxed">Monatlicher Conversion-Report, SEO-Tracking & bis zu 3h Änderungen pro Monat</p>
             </div>
           </div>
         </div>
@@ -230,7 +215,7 @@ export default function Angebot() {
               Der nächste Schritt ist ein <span className="text-brand-blue">15-Minuten-Gespräch.</span>
             </h2>
             <p className="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">
-              Wir sichten gemeinsam Ihre aktuelle Situation — und ich zeige Ihnen, was konkret möglich ist.
+              Ich sichte gemeinsam mit Ihnen Ihre aktuelle Situation — und zeige Ihnen, was konkret möglich ist.
             </p>
             
             <div className="flex justify-center mb-6">

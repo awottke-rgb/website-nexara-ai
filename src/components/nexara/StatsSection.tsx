@@ -34,8 +34,8 @@ function StatCard({ icon: Icon, value, suffix, label, description }: StatCardPro
 
 const stats = [
   { icon: TrendingUp, value: 200, suffix: "%", label: "Mehr Anfragen", description: "Durchschnittliche Steigerung der Kontaktanfragen nach Optimierung." },
-  { icon: Users, value: 50, suffix: "+", label: "Kundenprojekte", description: "KMUs vertrauen auf unsere technische & strategische Expertise." },
-  { icon: Zap, value: 98, suffix: "+", label: "Lighthouse Score", description: "Wir bauen Websites, die nicht nur gut aussehen, sondern auch rasend schnell laden." },
+  { icon: Users, value: 50, suffix: "+", label: "Kundenprojekte", description: "KMUs vertrauen auf meine technische & strategische Expertise." },
+  { icon: Zap, value: 98, suffix: "+", label: "Lighthouse Score", description: "Ich baue Websites, die nicht nur gut aussehen, sondern auch rasend schnell laden." },
 ];
 
 export default function StatsSection() {

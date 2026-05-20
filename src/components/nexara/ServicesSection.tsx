@@ -10,7 +10,7 @@ const services = [
     title: "KI-Automatisierung",
     description:
       "Intelligente Chatbots und Automatisierungen, die Kundenanfragen 24/7 beantworten und Ihnen Stunden an Arbeit ersparen.",
-    features: ["24/7 Chatbots", "Prozessautomatisierung", "Lead-Qualifizierung"],
+    features: ["24/7 Lead Capturing", "Support-Entlastung", "Skalierbarkeit"],
     colSpan: "md:col-span-1",
   },
   {
@@ -18,7 +18,7 @@ const services = [
     title: "Premium Webdesign",
     description:
       "Maßgeschneiderte, blitzschnelle Websites, die Besucher in Kunden verwandeln.",
-    features: ["Responsive", "SEO-optimiert", "Conversion-Fokus"],
+    features: ["High-Performance", "Premium Branding", "Conversion-Fokus"],
     colSpan: "md:col-span-1",
   },
 ];
@@ -88,12 +88,18 @@ function BentoCard({ service, index }: { service: any; index: number }) {
         }}
       />
 
+      {/* Corner Tech Accents */}
+      <span className="absolute top-5 left-5 text-[10px] font-mono text-gray-700/60 pointer-events-none select-none group-hover:text-brand-blue/50 transition-colors">+</span>
+      <span className="absolute top-5 right-5 text-[10px] font-mono text-gray-700/60 pointer-events-none select-none group-hover:text-brand-blue/50 transition-colors">+</span>
+      <span className="absolute bottom-5 left-5 text-[10px] font-mono text-gray-700/60 pointer-events-none select-none group-hover:text-brand-blue/50 transition-colors">+</span>
+      <span className="absolute bottom-5 right-5 text-[10px] font-mono text-gray-700/60 pointer-events-none select-none group-hover:text-brand-blue/50 transition-colors">+</span>
+
       <div className="relative z-20">
-        <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-8 group-hover:bg-brand-blue/10 transition-colors border border-white/5">
-          <Icon className="w-7 h-7 text-white group-hover:text-brand-blue transition-colors" />
+        <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-8 group-hover:bg-brand-blue/10 transition-colors border border-white/5 flex-shrink-0">
+          <Icon className="w-7 h-7 text-white group-hover:text-brand-blue transition-colors flex-shrink-0" size={28} style={{ width: '28px', height: '28px' }} />
         </div>
 
-        <h3 className="text-2xl font-bold text-white mb-4 font-display leading-tight">
+        <h3 className="text-2xl font-bold text-white mb-3 font-display leading-snug py-1">
           {service.title}
         </h3>
         <p className="text-gray-400 mb-10 leading-relaxed font-medium">
@@ -127,13 +133,13 @@ export default function ServicesSection() {
           className="text-center mb-16"
         >
           <p className="text-brand-blue font-bold text-xs tracking-[0.2em] uppercase mb-4">
-            Unsere Services
+            Meine Services
           </p>
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 font-display">
             Fokus auf das Wesentliche.
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto font-medium">
-            Wir kombinieren modernste Web-Technologien mit KI-gestützter Automatisierung,
+            Ich kombiniere modernste Web-Technologien mit KI-gestützter Automatisierung,
             um messbare Ergebnisse für Ihr Unternehmen zu erzielen.
           </p>
         </motion.div>

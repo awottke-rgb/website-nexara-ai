@@ -53,11 +53,17 @@ function ProblemCard({ problem, i }: { problem: any; i: number }) {
         }}
       />
 
+      {/* Corner Tech Accents */}
+      <span className="absolute top-5 left-5 text-[10px] font-mono text-gray-700/60 pointer-events-none select-none group-hover:text-red-500/50 transition-colors">+</span>
+      <span className="absolute top-5 right-5 text-[10px] font-mono text-gray-700/60 pointer-events-none select-none group-hover:text-red-500/50 transition-colors">+</span>
+      <span className="absolute bottom-5 left-5 text-[10px] font-mono text-gray-700/60 pointer-events-none select-none group-hover:text-red-500/50 transition-colors">+</span>
+      <span className="absolute bottom-5 right-5 text-[10px] font-mono text-gray-700/60 pointer-events-none select-none group-hover:text-red-500/50 transition-colors">+</span>
+
       <div className="relative z-20 flex flex-col items-center">
-        <div className="w-20 h-20 rounded-full bg-red-500/10 flex items-center justify-center mb-10 border border-red-500/20 group-hover:scale-110 transition-transform duration-500">
-          <Icon className="w-10 h-10 text-red-500" />
+        <div className="w-20 h-20 rounded-full bg-red-500/10 flex items-center justify-center mb-10 border border-red-500/20 group-hover:scale-110 transition-transform duration-500 flex-shrink-0">
+          <Icon className="w-10 h-10 text-red-500 flex-shrink-0" size={40} style={{ width: '40px', height: '40px' }} />
         </div>
-        <h3 className="text-3xl font-bold text-white mb-6 font-display leading-tight py-1">
+        <h3 className="text-3xl font-bold text-white mb-6 font-display leading-normal pb-2 overflow-visible min-h-[6rem] flex items-start justify-center w-full">
           {problem.title}
         </h3>
         <p className="text-gray-400 text-lg font-medium leading-relaxed">
@@ -91,7 +97,7 @@ export default function ProblemSection() {
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto font-medium leading-relaxed">
             Viele Unternehmen investieren in Webseiten, die zwar gut aussehen, 
-            aber keine messbaren Resultate liefern. Wir lösen dieses Problem.
+            aber keine messbaren Resultate liefern. Ich löse dieses Problem.
           </p>
         </motion.div>
 

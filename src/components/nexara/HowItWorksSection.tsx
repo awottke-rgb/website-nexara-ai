@@ -8,13 +8,13 @@ const steps = [
     num: "01",
     icon: MessageSquare,
     title: "Kostenlose Analyse",
-    description: "Wir analysieren Ihre aktuelle Online-Präsenz und identifizieren konkrete Verbesserungspotenziale.",
+    description: "Ich analysiere Ihre aktuelle Online-Präsenz und identifiziere konkrete Verbesserungspotenziale.",
   },
   {
     num: "02",
     icon: Palette,
     title: "Strategie & Design",
-    description: "Basierend auf Ihren Zielen entwickeln wir ein maßgeschneidertes Konzept mit modernem Design und klarer Struktur.",
+    description: "Basierend auf Ihren Zielen entwickle ich ein maßgeschneidertes Konzept mit modernem Design und klarer Struktur.",
   },
   {
     num: "03",

@@ -7,10 +7,19 @@ interface LeadModalProps {
   isOpen: boolean;
   onClose: () => void;
   source?: string;
+  initialEmail?: string;
+  initialWebsite?: string;
 }
 
-export default function LeadModal({ isOpen, onClose, source = "modal" }: LeadModalProps) {
+export default function LeadModal({ 
+  isOpen, 
+  onClose, 
+  source = "modal",
+  initialEmail = "",
+  initialWebsite = "" 
+}: LeadModalProps) {
   const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -18,6 +27,8 @@ export default function LeadModal({ isOpen, onClose, source = "modal" }: LeadMod
 
   useEffect(() => {
     if (isOpen) {
+      setEmail(initialEmail);
+      setWebsite(initialWebsite);
       document.body.style.overflow = "hidden";
       setTimeout(() => inputRef.current?.focus(), 150);
     } else {
@@ -26,7 +37,7 @@ export default function LeadModal({ isOpen, onClose, source = "modal" }: LeadMod
     return () => {
       document.body.style.overflow = "";
     };
-  }, [isOpen]);
+  }, [isOpen, initialEmail, initialWebsite]);
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -38,10 +49,17 @@ export default function LeadModal({ isOpen, onClose, source = "modal" }: LeadMod
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const trimmed = email.trim().toLowerCase();
+    const trimmedEmail = email.trim().toLowerCase();
+    const trimmedWebsite = website.trim();
 
-    if (!trimmed || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
+    if (!trimmedEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
       setErrorMsg("Bitte geben Sie eine gültige E-Mail-Adresse ein.");
+      setStatus("error");
+      return;
+    }
+
+    if (source !== "exit" && !trimmedWebsite) {
+      setErrorMsg("Bitte geben Sie Ihre Website-URL ein.");
       setStatus("error");
       return;
     }
@@ -51,7 +69,7 @@ export default function LeadModal({ isOpen, onClose, source = "modal" }: LeadMod
       const res = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: trimmed, source }),
+        body: JSON.stringify({ email: trimmedEmail, website: trimmedWebsite, source }),
       });
 
       if (res.ok || res.status === 409) {
@@ -122,6 +140,7 @@ export default function LeadModal({ isOpen, onClose, source = "modal" }: LeadMod
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
+                <label htmlFor="lead-email-input" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">E-Mail-Adresse</label>
                 <input
                   ref={inputRef}
                   id="lead-email-input"
@@ -134,12 +153,32 @@ export default function LeadModal({ isOpen, onClose, source = "modal" }: LeadMod
                   placeholder="ihre@email.de"
                   className="w-full px-4 py-3.5 bg-navy border border-border rounded-xl text-white placeholder-gray-500 
                              focus:outline-none focus:border-brand-blue/50 focus:ring-1 focus:ring-brand-blue/25 
-                             transition-all text-sm"
+                             transition-all text-sm font-medium"
                 />
-                {status === "error" && (
-                  <p className="text-red-400 text-xs mt-2">{errorMsg}</p>
-                )}
               </div>
+
+              {source !== "exit" && (
+                <div>
+                  <label htmlFor="lead-website-input" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Website-URL</label>
+                  <input
+                    id="lead-website-input"
+                    type="text"
+                    value={website}
+                    onChange={(e) => {
+                      setWebsite(e.target.value);
+                      if (status === "error") setStatus("idle");
+                    }}
+                    placeholder="www.ihre-website.de"
+                    className="w-full px-4 py-3.5 bg-navy border border-border rounded-xl text-white placeholder-gray-500 
+                               focus:outline-none focus:border-brand-blue/50 focus:ring-1 focus:ring-brand-blue/25 
+                               transition-all text-sm font-medium"
+                  />
+                </div>
+              )}
+
+              {status === "error" && (
+                <p className="text-red-400 text-xs font-medium mt-1">{errorMsg}</p>
+              )}
 
               <button
                 id="lead-submit-button"

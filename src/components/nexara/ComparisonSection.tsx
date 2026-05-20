@@ -6,28 +6,28 @@ import { Check, X } from "lucide-react";
 const comparisonData = [
   {
     feature: "Projektlaufzeit",
-    traditional: "3-6 Monate",
-    nexara: "2-4 Wochen",
+    traditional: "3 bis 6 Monate Wartezeit",
+    nexara: "2 bis 4 Wochen (Express-Launch)",
   },
   {
-    feature: "Technologie",
-    traditional: "Langsames WordPress",
-    nexara: "Modernes Next.js (wie Netflix)",
+    feature: "Geschwindigkeit",
+    traditional: "Träge Baukästen & WordPress",
+    nexara: "High-End & augenblicklich geladen",
   },
   {
-    feature: "Conversion-Fokus",
-    traditional: "Reine Visitenkarte",
-    nexara: "Optimiert auf Lead-Generierung",
+    feature: "Umsatz-Fokus",
+    traditional: "Reine, passive Visitenkarte",
+    nexara: "Aktiver Wunschkunden-Magnet",
   },
   {
-    feature: "Kunden-Kommunikation",
+    feature: "Kommunikation",
     traditional: "Viel Fachchinesisch",
-    nexara: "Klar, transparent & auf Augenhöhe",
+    nexara: "Klar, verständlich & auf Augenhöhe",
   },
   {
     feature: "Preisstruktur",
-    traditional: "Versteckte Wartungskosten",
-    nexara: "Transparente Fixpreise",
+    traditional: "Versteckte Folgekosten & Abos",
+    nexara: "Garantierte, transparente Fixpreise",
   },
 ];
 
@@ -49,7 +49,7 @@ export default function ComparisonSection() {
             Warum Nexara AI?
           </h2>
           <p className="text-gray-400 max-w-xl mx-auto">
-            Wir haben verstanden, was kleine und mittlere Unternehmen wirklich brauchen:
+            Ich habe verstanden, was kleine und mittlere Unternehmen wirklich brauchen:
             Ergebnisse statt endloser Meetings.
           </p>
         </motion.div>

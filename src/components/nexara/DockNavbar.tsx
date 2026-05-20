@@ -39,21 +39,25 @@ export default function DockNavbar({ onCtaClick }: DockNavbarProps) {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          initial={{ y: 100, opacity: 0, x: "-50%" }}
+          initial={{ y: -100, opacity: 0, x: "-50%" }}
           animate={{ y: 0, opacity: 1, x: "-50%" }}
-          exit={{ y: 100, opacity: 0, x: "-50%" }}
-          className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] hidden md:block"
+          exit={{ y: -100, opacity: 0, x: "-50%" }}
+          className="fixed top-6 left-1/2 -translate-x-1/2 z-[100] hidden md:block"
         >
           <nav className="flex items-center gap-2 p-2 bg-black/50 backdrop-blur-3xl border border-white/5 rounded-full shadow-2xl">
             {/* Logo */}
-            <div className="pl-3 pr-4 border-r border-white/5">
-              <Image 
-                src="/logo.svg" 
-                alt="Nexara AI" 
-                width={100}
-                height={24}
-                className="h-5 w-auto brightness-0 invert opacity-90" 
-              />
+            <div className="pl-3 pr-4 border-r border-white/5 flex items-center gap-2">
+              <div className="relative w-5 h-5 flex-shrink-0">
+                <Image 
+                  src="/icon.svg" 
+                  alt="Nexara AI Logo" 
+                  fill
+                  className="object-contain opacity-95" 
+                />
+              </div>
+              <span className="font-display text-sm font-bold tracking-tight text-white select-none">
+                Nexara <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-blue to-brand-blue-light font-sans font-extrabold">AI</span>
+              </span>
             </div>
 
             {/* Links */}
