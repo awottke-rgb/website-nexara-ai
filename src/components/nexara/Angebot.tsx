@@ -62,11 +62,11 @@ export default function Angebot() {
           transition={{ duration: 0.8 }}
           className="text-center mb-24"
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 font-display leading-tight max-w-4xl mx-auto">
+          <h2 className="text-[1.75rem] min-[375px]:text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-6 font-display leading-tight max-w-4xl mx-auto">
             In 60 Tagen wissen Sie exakt, warum Besucher nicht buchen — 
             <span className="text-brand-blue"> und haben ein System das das ändert.</span>
           </h2>
-          <p className="text-gray-400 text-lg sm:text-xl font-medium max-w-2xl mx-auto mb-8">
+          <p className="text-gray-400 text-base sm:text-xl font-medium max-w-2xl mx-auto mb-8">
             Ich optimiere Ihre Website so, dass Interessenten nicht mehr nach 15 Sekunden abspringen — sondern einen Termin buchen.
           </p>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-blue/10 border border-brand-blue/20">
@@ -93,7 +93,7 @@ export default function Angebot() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="card-antigravity p-8 flex flex-col group border-0 relative"
+                className="card-antigravity p-6 sm:p-8 flex flex-col group border-0 relative rounded-[24px] sm:rounded-[40px]"
               >
                 {/* Border Glow Effect */}
                 <div
@@ -125,10 +125,10 @@ export default function Angebot() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-white/[0.01] border border-white/5 rounded-3xl p-10 flex flex-col justify-between"
+            className="bg-white/[0.01] border border-white/5 rounded-[24px] sm:rounded-3xl p-6 sm:p-10 flex flex-col justify-between"
           >
             <div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 font-display">
+              <h3 className="text-xl sm:text-3xl font-bold text-white mb-4 font-display">
                 Was Sie <span className="text-red-500/80">hinter sich lassen</span>
               </h3>
               <p className="text-gray-500 text-sm mb-8 font-medium">
@@ -150,13 +150,13 @@ export default function Angebot() {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-brand-blue/5 border border-brand-blue/20 rounded-3xl p-10 flex flex-col justify-between relative overflow-hidden"
+            className="bg-brand-blue/5 border border-brand-blue/20 rounded-[24px] sm:rounded-3xl p-6 sm:p-10 flex flex-col justify-between relative overflow-hidden"
           >
             {/* Subtle glow */}
             <div className="absolute -top-12 -right-12 w-48 h-48 bg-brand-blue/10 blur-3xl pointer-events-none" />
             
             <div className="relative z-10">
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 font-display">
+              <h3 className="text-xl sm:text-3xl font-bold text-white mb-4 font-display">
                 Was wir <span className="text-brand-blue">gemeinsam bauen</span>
               </h3>
               <p className="text-gray-400 text-sm mb-8 font-medium">
@@ -187,15 +187,15 @@ export default function Angebot() {
             Optionale Erweiterungen
           </motion.h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="card-antigravity border border-white/5 rounded-3xl p-10 flex flex-col items-center text-center group hover:border-brand-blue/30 transition-all duration-300 relative overflow-hidden bg-white/[0.01]">
-              <h4 className="text-xl sm:text-2xl font-bold text-white mb-3 font-display">Wartungs-Paket Basic</h4>
-              <p className="text-brand-blue font-extrabold text-2xl sm:text-3xl mb-6 font-display">99 €<span className="text-gray-500 text-sm font-medium"> / Monat</span></p>
-              <p className="text-gray-400 text-base sm:text-lg font-medium leading-relaxed">Hosting, Sicherheitsupdates & 1h flexible Änderungen pro Monat</p>
+            <div className="card-antigravity border border-white/5 rounded-[24px] sm:rounded-3xl p-6 sm:p-10 flex flex-col items-center text-center group hover:border-brand-blue/30 transition-all duration-300 relative overflow-hidden bg-white/[0.01]">
+              <h4 className="text-lg sm:text-2xl font-bold text-white mb-3 font-display">Wartungs-Paket Basic</h4>
+              <p className="text-brand-blue font-extrabold text-xl sm:text-3xl mb-6 font-display">99 €<span className="text-gray-500 text-sm font-medium"> / Monat</span></p>
+              <p className="text-gray-400 text-sm sm:text-lg font-medium leading-relaxed">Hosting, Sicherheitsupdates & 1h flexible Änderungen pro Monat</p>
             </div>
-            <div className="card-antigravity border border-white/5 rounded-3xl p-10 flex flex-col items-center text-center group hover:border-brand-blue/30 transition-all duration-300 relative overflow-hidden bg-white/[0.01]">
-              <h4 className="text-xl sm:text-2xl font-bold text-white mb-3 font-display">Wartungs-Paket Pro</h4>
-              <p className="text-brand-blue font-extrabold text-2xl sm:text-3xl mb-6 font-display">199 €<span className="text-gray-500 text-sm font-medium"> / Monat</span></p>
-              <p className="text-gray-400 text-base sm:text-lg font-medium leading-relaxed">Monatlicher Conversion-Report, SEO-Tracking & bis zu 3h Änderungen pro Monat</p>
+            <div className="card-antigravity border border-white/5 rounded-[24px] sm:rounded-3xl p-6 sm:p-10 flex flex-col items-center text-center group hover:border-brand-blue/30 transition-all duration-300 relative overflow-hidden bg-white/[0.01]">
+              <h4 className="text-lg sm:text-2xl font-bold text-white mb-3 font-display">Wartungs-Paket Pro</h4>
+              <p className="text-brand-blue font-extrabold text-xl sm:text-3xl mb-6 font-display">199 €<span className="text-gray-500 text-sm font-medium"> / Monat</span></p>
+              <p className="text-gray-400 text-sm sm:text-lg font-medium leading-relaxed">Monatlicher Conversion-Report, SEO-Tracking & bis zu 3h Änderungen pro Monat</p>
             </div>
           </div>
         </div>
@@ -205,13 +205,13 @@ export default function Angebot() {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="text-center py-20 bg-brand-blue/5 border border-brand-blue/10 rounded-[40px] relative overflow-hidden"
+          className="text-center py-10 sm:py-20 bg-brand-blue/5 border border-brand-blue/10 rounded-[24px] sm:rounded-[40px] relative overflow-hidden"
         >
           {/* Subtle bg glow */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-brand-blue/10 blur-[120px] pointer-events-none" />
           
           <div className="relative z-10 px-6">
-            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6 font-display leading-tight">
+            <h2 className="text-2xl sm:text-5xl font-bold text-white mb-6 font-display leading-tight">
               Der nächste Schritt ist ein <span className="text-brand-blue">15-Minuten-Gespräch.</span>
             </h2>
             <p className="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">

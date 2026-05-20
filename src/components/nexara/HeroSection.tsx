@@ -40,7 +40,7 @@ export default function HeroSection({ onAnalyseClick }: HeroSectionProps) {
         </div>
 
         {/* Headline */}
-        <h1 className="text-6xl sm:text-7xl md:text-8xl font-bold text-white mb-10 tracking-tight font-display leading-[0.95]">
+        <h1 className="text-[2.5rem] min-[375px]:text-5xl sm:text-7xl md:text-8xl font-bold text-white mb-6 sm:mb-10 tracking-tight font-display leading-[0.95]">
           {"Ihre Website.".split("").map((char, i) => (
             <motion.span
               key={i}

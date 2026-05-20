@@ -69,7 +69,7 @@ export default function HowItWorksSection() {
 
                   {/* Content card */}
                   <div className={`flex-1 ${i % 2 === 1 ? "md:text-right" : ""}`}>
-                    <div className={`p-8 rounded-2xl card-antigravity border border-white/5 ${i % 2 === 1 ? "md:ml-auto md:mr-12" : "md:ml-12"} max-w-md`}>
+                    <div className={`p-6 sm:p-8 rounded-2xl card-antigravity border border-white/5 ${i % 2 === 1 ? "md:ml-auto md:mr-12" : "md:ml-12"} max-w-full sm:max-w-md`}>
                       <div className={`flex items-center gap-4 mb-4 ${i % 2 === 1 ? "md:flex-row-reverse" : ""}`}>
                         <div className="w-12 h-12 rounded-xl bg-brand-blue/5 flex items-center justify-center flex-shrink-0 border border-brand-blue/10">
                           <Icon className="w-6 h-6 text-brand-blue" />

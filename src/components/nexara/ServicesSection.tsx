@@ -66,11 +66,11 @@ function BentoCard({ service, index }: { service: any; index: number }) {
       onBlur={handleBlur}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative card-antigravity pt-10 px-10 pb-12 flex flex-col h-full min-h-[380px] group ${service.colSpan} border-0`}
+      className={`relative card-antigravity pt-6 px-6 pb-8 sm:pt-10 sm:px-10 sm:pb-12 flex flex-col h-full min-h-[340px] sm:min-h-[380px] group ${service.colSpan} border-0`}
     >
       {/* Border Glow Effect */}
       <div
-        className="pointer-events-none absolute -inset-px rounded-[40px] opacity-0 transition duration-300 group-hover:opacity-100 z-10"
+        className="pointer-events-none absolute -inset-px rounded-[24px] sm:rounded-[40px] opacity-0 transition duration-300 group-hover:opacity-100 z-10"
         style={{
           background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(37, 99, 235, 0.4), transparent 40%)`,
           padding: "1px",
@@ -82,7 +82,7 @@ function BentoCard({ service, index }: { service: any; index: number }) {
 
       {/* Spotlight Background */}
       <div
-        className="pointer-events-none absolute -inset-px rounded-[40px] opacity-0 transition duration-300 group-hover:opacity-100"
+        className="pointer-events-none absolute -inset-px rounded-[24px] sm:rounded-[40px] opacity-0 transition duration-300 group-hover:opacity-100"
         style={{
           background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(37, 99, 235, 0.05), transparent 40%)`,
         }}

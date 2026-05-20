@@ -424,7 +424,7 @@ export default function InteractiveShowcase() {
             ref={containerRef}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className="lg:col-span-7 flex flex-col justify-between p-1 bg-navy-card/30 rounded-[40px] border border-white/5 relative overflow-hidden h-[480px] shadow-2xl group hover:border-brand-blue/20 transition-all duration-500"
+            className="lg:col-span-7 flex flex-col justify-between p-1 bg-navy-card/30 rounded-[24px] sm:rounded-[40px] border border-white/5 relative overflow-hidden h-[320px] sm:h-[480px] shadow-2xl group hover:border-brand-blue/20 transition-all duration-500"
           >
             {/* Corner Tech Ticks */}
             <span className="absolute top-5 left-5 text-[10px] font-mono text-gray-700/60 pointer-events-none select-none group-hover:text-brand-blue/50 transition-colors">+</span>
@@ -446,7 +446,7 @@ export default function InteractiveShowcase() {
           </div>
 
           {/* Right Column: Interactive Description (Span 5) */}
-          <div className="lg:col-span-5 flex flex-col justify-center p-8 sm:p-10 bg-navy-card/45 rounded-[40px] border border-white/5 relative overflow-hidden shadow-2xl hover:border-brand-blue/20 transition-all duration-500">
+          <div className="lg:col-span-5 flex flex-col justify-center p-6 sm:p-10 bg-navy-card/45 rounded-[24px] sm:rounded-[40px] border border-white/5 relative overflow-hidden shadow-2xl hover:border-brand-blue/20 transition-all duration-500">
             <div className="absolute top-0 right-0 w-48 h-48 bg-brand-blue/5 blur-[70px] pointer-events-none rounded-full" />
             
             <div className="py-4">
@@ -510,7 +510,7 @@ export default function InteractiveShowcase() {
 
           {/* NEW FULL-WIDTH INTERACTIVE PROBLEM NAVIGATOR COCKPIT (Span 12) */}
           <div className="lg:col-span-12 mt-10 relative">
-            <div className="card-antigravity p-10 sm:p-14 shadow-2xl relative overflow-hidden border border-white/5 bg-navy-card/30 rounded-[40px] text-left">
+            <div className="card-antigravity p-5 sm:p-10 md:p-14 shadow-2xl relative overflow-hidden border border-white/5 bg-navy-card/30 rounded-[24px] sm:rounded-[40px] text-left">
               {/* Corner engineering marks */}
               <span className="absolute top-5 left-5 text-[10px] font-mono text-gray-700/60 pointer-events-none select-none">+</span>
               <span className="absolute top-5 right-5 text-[10px] font-mono text-gray-700/60 pointer-events-none select-none">+</span>
@@ -521,7 +521,7 @@ export default function InteractiveShowcase() {
               <div className="absolute bottom-0 left-0 w-80 h-80 bg-purple-500/5 blur-[120px] pointer-events-none rounded-full" />
 
               {/* Section Header */}
-              <div className="text-center mb-14">
+              <div className="text-center mb-10 sm:mb-14">
                 <span className="text-red-400 font-bold text-xs tracking-[0.25em] uppercase bg-red-500/10 px-4 py-1.5 rounded-full border border-red-500/20">
                   INTERAKTIVER ENGPASS-ANALYSATOR
                 </span>
@@ -534,7 +534,7 @@ export default function InteractiveShowcase() {
               </div>
 
               {/* Wavy Problem Nodes Bar */}
-              <div className="flex items-center justify-around gap-4 px-6 py-6 bg-black/45 border border-white/5 rounded-3xl relative z-20 h-28 w-full mb-10 overflow-visible">
+              <div className="grid grid-cols-3 sm:flex items-center sm:justify-around gap-4 gap-y-6 px-4 py-6 sm:px-6 bg-black/45 border border-white/5 rounded-3xl relative z-20 h-auto sm:h-28 w-full mb-10 overflow-visible">
                 {problemsData.map((item, idx) => {
                   const IconComponent = item.icon;
                   

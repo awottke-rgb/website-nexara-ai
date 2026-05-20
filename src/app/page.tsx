@@ -17,6 +17,7 @@ import Footer from "@/components/nexara/Footer";
 import LeadModal from "@/components/nexara/LeadModal";
 import FadeInSection from "@/components/nexara/FadeInSection";
 
+
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalSource, setModalSource] = useState("hero");
@@ -41,38 +42,29 @@ export default function Home() {
     <>
       <Navbar onCtaClick={scrollToKontakt} />
       <DockNavbar onCtaClick={scrollToKontakt} />
-
       <main className="flex-1">
         <HeroSection onAnalyseClick={scrollToKontakt} />
-
         <FadeInSection>
           <ProblemSection />
         </FadeInSection>
-
         <FadeInSection>
           <ServicesSection />
         </FadeInSection>
-
         <FadeInSection>
           <InteractiveShowcase />
         </FadeInSection>
-
         <FadeInSection>
           <ComparisonSection />
         </FadeInSection>
-
         <FadeInSection>
           <AboutSection />
         </FadeInSection>
-
         <FadeInSection>
           <WhySection />
         </FadeInSection>
-
         <FadeInSection>
           <HowItWorksSection />
         </FadeInSection>
-
         <FadeInSection>
           <Angebot />
         </FadeInSection>
@@ -81,9 +73,7 @@ export default function Home() {
           <CtaSection onAnalyseClick={(email, website) => openModal("bottom_cta", email, website)} />
         </FadeInSection>
       </main>
-
       <Footer />
-
       <LeadModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

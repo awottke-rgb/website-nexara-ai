@@ -39,11 +39,11 @@ function ProblemCard({ problem, i }: { problem: any; i: number }) {
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay: i * 0.2, ease: "easeOut" }}
-      className="relative card-antigravity p-12 flex flex-col items-center text-center group border-0"
+      className="relative card-antigravity p-6 sm:p-12 flex flex-col items-center text-center group border-0"
     >
       {/* Border Glow Effect */}
       <div
-        className="pointer-events-none absolute -inset-px rounded-[40px] opacity-0 transition duration-300 group-hover:opacity-100 z-10"
+        className="pointer-events-none absolute -inset-px rounded-[24px] sm:rounded-[40px] opacity-0 transition duration-300 group-hover:opacity-100 z-10"
         style={{
           background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(234, 67, 53, 0.4), transparent 40%)`,
           padding: "1px",
@@ -60,13 +60,13 @@ function ProblemCard({ problem, i }: { problem: any; i: number }) {
       <span className="absolute bottom-5 right-5 text-[10px] font-mono text-gray-700/60 pointer-events-none select-none group-hover:text-red-500/50 transition-colors">+</span>
 
       <div className="relative z-20 flex flex-col items-center">
-        <div className="w-20 h-20 rounded-full bg-red-500/10 flex items-center justify-center mb-10 border border-red-500/20 group-hover:scale-110 transition-transform duration-500 flex-shrink-0">
-          <Icon className="w-10 h-10 text-red-500 flex-shrink-0" size={40} style={{ width: '40px', height: '40px' }} />
+        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-red-500/10 flex items-center justify-center mb-6 sm:mb-10 border border-red-500/20 group-hover:scale-110 transition-transform duration-500 flex-shrink-0">
+          <Icon className="w-8 h-8 sm:w-10 sm:h-10 text-red-500 flex-shrink-0" size={40} style={{ width: '40px', height: '40px' }} />
         </div>
-        <h3 className="text-3xl font-bold text-white mb-6 font-display leading-normal pb-2 overflow-visible min-h-[6rem] flex items-start justify-center w-full">
+        <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 sm:mb-6 font-display leading-normal pb-2 overflow-visible sm:min-h-[6rem] flex items-start justify-center w-full">
           {problem.title}
         </h3>
-        <p className="text-gray-400 text-lg font-medium leading-relaxed">
+        <p className="text-gray-400 text-base sm:text-lg font-medium leading-relaxed">
           {problem.description}
         </p>
       </div>
