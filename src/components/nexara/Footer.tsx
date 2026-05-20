@@ -43,7 +43,7 @@ export default function Footer() {
               Datenschutz
             </Link>
             <a
-              href="#"
+              href="https://www.linkedin.com/feed/update/urn:li:activity:7391833568660066304/?origin=NETWORK_CONVERSATIONS"
               className="text-gray-400 hover:text-white transition-colors"
               target="_blank"
               rel="noopener noreferrer"
