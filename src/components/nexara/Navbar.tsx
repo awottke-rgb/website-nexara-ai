@@ -40,7 +40,7 @@ export default function Navbar({ onCtaClick }: NavbarProps) {
         <a href="#" className="flex items-center gap-3 group z-10">
           <div className="relative w-8 h-8 flex-shrink-0">
             <Image 
-              src="/icon.png" 
+              src="/icon.svg" 
               alt="Nexara AI Logo" 
               fill
               className="object-contain opacity-95 group-hover:opacity-100 transition-opacity" 

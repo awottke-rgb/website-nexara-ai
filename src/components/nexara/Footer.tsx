@@ -11,7 +11,7 @@ export default function Footer() {
             <Link href="/" className="flex items-center gap-3 mb-6 group">
               <div className="relative w-8 h-8 flex-shrink-0">
                 <Image 
-                  src="/icon.png" 
+                  src="/icon.svg" 
                   alt="Nexara AI Logo" 
                   fill
                   className="object-contain opacity-95 group-hover:opacity-100 transition-opacity" 
