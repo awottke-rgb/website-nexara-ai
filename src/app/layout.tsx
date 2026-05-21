@@ -18,8 +18,39 @@ const epilogue = Epilogue({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://nexara-ai.de"),
   title: "Nexara AI - KI-gestützte Digitalagentur",
   description: "Ich entwickle performante Websites und KI-Lösungen für kleine und mittlere Unternehmen.",
+  openGraph: {
+    title: "Nexara AI - KI-gestützte Digitalagentur",
+    description: "Ich entwickle performante Websites und KI-Lösungen für kleine und mittlere Unternehmen.",
+    url: "https://nexara-ai.de",
+    siteName: "Nexara AI",
+    locale: "de_DE",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Nexara AI - KI-gestützte Digitalagentur",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nexara AI - KI-gestützte Digitalagentur",
+    description: "Ich entwickle performante Websites und KI-Lösungen für kleine und mittlere Unternehmen.",
+    images: ["/og-image.png"],
+  },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+  },
 };
 
 import MobileStickyCTA from "@/components/nexara/MobileStickyCTA";
