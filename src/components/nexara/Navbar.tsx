@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import { Phone } from "lucide-react";
+import Magnetic from "./Magnetic";
 
 interface NavbarProps {
   onCtaClick: () => void;
@@ -9,7 +11,6 @@ interface NavbarProps {
 
 export default function Navbar({ onCtaClick }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
-  const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,31 +20,24 @@ export default function Navbar({ onCtaClick }: NavbarProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (!buttonRef.current) return;
-    const rect = buttonRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    buttonRef.current.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
-  };
-
-  const handleMouseLeave = () => {
-    if (!buttonRef.current) return;
-    buttonRef.current.style.transform = `translate(0px, 0px)`;
-  };
+  const navItems = [
+    { label: "Leistungen", href: "#leistungen" },
+    { label: "Über mich", href: "#ueber-mich" },
+    { label: "Vorteile", href: "#vorteile" },
+  ];
 
   return (
     <nav
       id="navbar"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 md:hidden ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-navy/80 backdrop-blur-xl border-b border-border shadow-lg shadow-black/20"
-          : "bg-transparent"
+          ? "bg-navy/80 backdrop-blur-xl border-b border-white/5 shadow-lg shadow-black/20"
+          : "bg-transparent border-b border-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div className="relative max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3 group">
+        <a href="#" className="flex items-center gap-3 group z-10">
           <div className="relative w-8 h-8 flex-shrink-0">
             <Image 
               src="/icon.svg" 
@@ -59,21 +53,35 @@ export default function Navbar({ onCtaClick }: NavbarProps) {
           </span>
         </a>
 
-        {/* CTA */}
-        <div className="p-4 -mr-4"> {/* Wrapper for larger hover area for magnetic effect */}
-          <button
-            id="navbar-cta"
-            ref={buttonRef}
-            onClick={onCtaClick}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            className="px-6 py-2.5 bg-brand-blue text-white text-sm font-medium rounded-xl
-                       hover:bg-brand-blue-light transition-colors duration-300
-                       shadow-lg shadow-brand-blue/20 hover:shadow-brand-blue/40 cursor-pointer"
-            style={{ transition: 'transform 0.1s ease-out, background-color 0.3s, box-shadow 0.3s' }}
-          >
-            Jetzt anfragen
-          </button>
+        {/* Centered Navigation Links (Desktop Only) */}
+        <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center gap-8 z-10">
+          {navItems.map((item) => (
+            <Magnetic key={item.label} strength={0.15}>
+              <a
+                href={item.href}
+                className="relative text-sm font-medium text-gray-450 hover:text-white transition-colors duration-300 group py-2"
+              >
+                {item.label}
+                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-brand-blue scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center" />
+              </a>
+            </Magnetic>
+          ))}
+        </div>
+
+        {/* CTA (Premium White Pill) */}
+        <div className="flex items-center z-10">
+          <Magnetic strength={0.15}>
+            <button
+              id="navbar-cta"
+              onClick={onCtaClick}
+              className="flex items-center gap-2 px-5 py-2.5 bg-white text-black text-sm font-bold rounded-full
+                         hover:bg-gray-200 active:scale-95 transition-all duration-300 cursor-pointer
+                         shadow-lg shadow-white/5 hover:shadow-white/10"
+            >
+              <Phone className="w-4 h-4" />
+              <span>Anfragen</span>
+            </button>
+          </Magnetic>
         </div>
       </div>
     </nav>

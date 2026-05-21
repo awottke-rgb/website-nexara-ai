@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Navbar from "@/components/nexara/Navbar";
-import DockNavbar from "@/components/nexara/DockNavbar";
 import HeroSection from "@/components/nexara/HeroSection";
 import ProblemSection from "@/components/nexara/ProblemSection";
 import AboutSection from "@/components/nexara/AboutSection";
@@ -42,7 +41,6 @@ export default function Home() {
   return (
     <>
       <Navbar onCtaClick={scrollToKontakt} />
-      <DockNavbar onCtaClick={scrollToKontakt} />
       <main className="flex-1">
         <HeroSection onAnalyseClick={scrollToKontakt} />
         <FadeInSection>

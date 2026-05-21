@@ -9,7 +9,7 @@ interface CtaSectionProps {
 }
 
 // Ändern Sie hier Ihren Cal.com-Link (z. B. "ihr-name/15min")
-const CAL_LINK = "adrien-wottke-hogs97/15min";
+const CAL_LINK = "adrien-wottke-hogs97/18min";
 
 export default function CtaSection({ onAnalyseClick }: CtaSectionProps) {
   const { ref, isInView } = useInView({ threshold: 0.1 });

@@ -20,7 +20,7 @@ const steps = [
     num: "03",
     icon: Rocket,
     title: "Umsetzung & Launch",
-    description: "In wenigen Wochen geht Ihre neue Website live — optimiert für Suchmaschinen und maximale Conversion.",
+    description: "In 2 bis 4 Wochen geht Ihre neue Website live — optimiert für Suchmaschinen und maximale Conversion.",
   },
 ];
 

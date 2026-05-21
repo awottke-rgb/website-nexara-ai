@@ -134,8 +134,8 @@ export default function OvernightSection() {
     {
       icon: Timer,
       emoji: "⏱",
-      title: "2–3 Tage Lieferzeit",
-      description: "Statt wochenlangem Hin-und-Her: Ihre neue Website ist in 2–3 Werktagen live."
+      title: "2–4 Wochen Projektzeit",
+      description: "Ihr gesamtes Premium-Projekt ist in 2 bis 4 Wochen schlüsselfertig live. Neue Iterationsschritte setzen wir dabei jede Nacht direkt für Sie um."
     },
     {
       icon: RefreshCw,
@@ -203,7 +203,7 @@ export default function OvernightSection() {
                     variants={leftItemVariants}
                     className="flex items-start gap-4 p-5 rounded-2xl bg-white/[0.01] border border-white/[0.02] hover:bg-white/[0.02] transition-colors duration-300"
                   >
-                    <div className="font-mono text-sm font-semibold text-gray-500 bg-white/5 px-2.5 py-1 rounded-md mt-0.5">
+                    <div className="w-[64px] flex-shrink-0 text-center font-mono text-sm font-semibold text-gray-500 bg-white/5 py-1 rounded-md mt-0.5">
                       {item.time}
                     </div>
                     <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-gray-400 border border-white/5 flex-shrink-0">
@@ -236,7 +236,7 @@ export default function OvernightSection() {
             </div>
 
             {/* Subtle Vertical Connector Line */}
-            <div className="absolute left-[70px] top-[100px] bottom-[40px] w-px bg-gradient-to-b from-brand-blue/60 via-brand-blue/30 to-transparent hidden sm:block pointer-events-none" />
+            <div className="absolute left-[118px] top-[100px] bottom-[40px] w-px bg-gradient-to-b from-brand-blue/60 via-brand-blue/30 to-transparent hidden sm:block pointer-events-none" />
 
             <div className="space-y-6 flex-1 flex flex-col justify-between">
               {rightTimeline.map((item, idx) => {
@@ -254,7 +254,7 @@ export default function OvernightSection() {
                     {/* Ambient Glow on Hover */}
                     <div className="absolute inset-0 bg-gradient-to-r from-brand-blue/5 to-transparent opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-500 pointer-events-none" />
                     
-                    <div className="font-mono text-sm font-semibold text-brand-blue-light bg-brand-blue/10 px-2.5 py-1 rounded-md mt-0.5 border border-brand-blue/10 group-hover:border-brand-blue/30 transition-colors z-10">
+                    <div className="w-[64px] flex-shrink-0 text-center font-mono text-sm font-semibold text-brand-blue-light bg-brand-blue/10 py-1 rounded-md mt-0.5 border border-brand-blue/10 group-hover:border-brand-blue/30 transition-colors z-10">
                       {item.time}
                     </div>
                     <div className="w-9 h-9 rounded-lg bg-brand-blue/10 flex items-center justify-center text-brand-blue-light border border-brand-blue/20 group-hover:bg-brand-blue/20 group-hover:text-white transition-all flex-shrink-0 z-10">
