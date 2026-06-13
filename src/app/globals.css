@@ -119,6 +119,19 @@ h6 {
 }
 
 /* Micro-interactions */
+@keyframes floatIcon {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(12px);
+  }
+}
+
+.animate-float-icon {
+  animation: floatIcon 3.5s ease-in-out infinite;
+}
+
 .btn-primary {
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   border-radius: 9999px;

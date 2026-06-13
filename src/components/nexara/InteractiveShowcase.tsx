@@ -119,24 +119,12 @@ export default function InteractiveShowcase() {
   const particlesRef = useRef<Particle[]>([]);
   const animationFrameId = useRef<number | null>(null);
   const mouseRef = useRef({ x: -1000, y: -1000 });
-  const [time, setTime] = useState(0);
 
   // Keep track of active tab in ref for the animation loop
   const activeTabRef = useRef(activeTab);
   useEffect(() => {
     activeTabRef.current = activeTab;
   }, [activeTab]);
-
-  // Track global time for wavy dock animation
-  useEffect(() => {
-    let frameId: number;
-    const tick = () => {
-      setTime((prev) => prev + 0.05);
-      frameId = requestAnimationFrame(tick);
-    };
-    frameId = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frameId);
-  }, []);
 
   // Mathematical Coordinate Generators
   const generateLeftBracket = (count: number, scaleX: number, scaleY: number, offset: number) => {
@@ -246,6 +234,8 @@ export default function InteractiveShowcase() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    let isVisible = true;
+
     const resizeCanvas = () => {
       const dpr = window.devicePixelRatio || 1;
       const rect = canvas.getBoundingClientRect();
@@ -282,6 +272,8 @@ export default function InteractiveShowcase() {
 
     // Animation Loop
     const update = (timestamp: number) => {
+      if (!isVisible) return;
+
       const w = canvas.width / (window.devicePixelRatio || 1);
       const h = canvas.height / (window.devicePixelRatio || 1);
       const centerX = w / 2;
@@ -349,12 +341,16 @@ export default function InteractiveShowcase() {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
-
-        // Adding glow shadow to each particle for extreme premium look
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = p.color;
         ctx.fill();
-        ctx.shadowBlur = 0; // reset
+
+        // Adding performant glow halo instead of slow shadowBlur
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size * 3, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = 0.15;
+        ctx.fill();
+        ctx.restore();
       }
 
       // If cluster tab, draw very faint holographic neural net connecting lines
@@ -376,11 +372,23 @@ export default function InteractiveShowcase() {
       animationFrameId.current = requestAnimationFrame(update);
     };
 
-    animationFrameId.current = requestAnimationFrame(update);
+    // Intersection Observer to pause animation loop when off-screen
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          if (animationFrameId.current) cancelAnimationFrame(animationFrameId.current);
+          animationFrameId.current = requestAnimationFrame(update);
+        }
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(canvas);
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
       if (animationFrameId.current) cancelAnimationFrame(animationFrameId.current);
+      observer.disconnect();
     };
   }, []);
 
@@ -538,11 +546,8 @@ export default function InteractiveShowcase() {
                 {problemsData.map((item, idx) => {
                   const IconComponent = item.icon;
                   
-                  // Calculate dynamic wave vertical translation y based on mathematical sine function
                   const isHovered = activeProblemHover === idx;
                   const isSelected = selectedProblemIdx === idx;
-                  
-                  const waveY = (isHovered || isSelected) ? 0 : Math.sin(time + idx * 0.5) * 12;
 
                   return (
                     <button
@@ -552,8 +557,10 @@ export default function InteractiveShowcase() {
                         setSelectedProblemIdx(idx);
                       }}
                       onMouseLeave={() => setActiveProblemHover(null)}
-                      style={{ transform: `translateY(${waveY}px)` }}
-                      className="flex flex-col items-center gap-3 group/icon cursor-pointer transition-all duration-500 outline-none relative"
+                      style={{ animationDelay: `${idx * 0.4}s` }}
+                      className={`flex flex-col items-center gap-3 group/icon cursor-pointer transition-all duration-500 outline-none relative ${
+                        isSelected || isHovered ? "" : "animate-float-icon"
+                      }`}
                     >
                       {/* Circle Node */}
                       <div 

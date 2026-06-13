@@ -27,13 +27,15 @@ function BentoCard({ service, index }: { service: any; index: number }) {
   const Icon = service.icon;
   const divRef = useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
   const [opacity, setOpacity] = useState(0);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!divRef.current || isFocused) return;
     const rect = divRef.current.getBoundingClientRect();
-    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    divRef.current.style.setProperty("--mouse-x", `${x}px`);
+    divRef.current.style.setProperty("--mouse-y", `${y}px`);
   };
 
   const handleFocus = () => {
@@ -72,7 +74,7 @@ function BentoCard({ service, index }: { service: any; index: number }) {
       <div
         className="pointer-events-none absolute -inset-px rounded-[24px] sm:rounded-[40px] opacity-0 transition duration-300 group-hover:opacity-100 z-10"
         style={{
-          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(37, 99, 235, 0.4), transparent 40%)`,
+          background: `radial-gradient(600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(37, 99, 235, 0.4), transparent 40%)`,
           padding: "1px",
           WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
           WebkitMaskComposite: "xor",
@@ -84,7 +86,7 @@ function BentoCard({ service, index }: { service: any; index: number }) {
       <div
         className="pointer-events-none absolute -inset-px rounded-[24px] sm:rounded-[40px] opacity-0 transition duration-300 group-hover:opacity-100"
         style={{
-          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(37, 99, 235, 0.05), transparent 40%)`,
+          background: `radial-gradient(600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(37, 99, 235, 0.05), transparent 40%)`,
         }}
       />
 

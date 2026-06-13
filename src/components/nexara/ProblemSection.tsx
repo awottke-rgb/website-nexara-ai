@@ -3,7 +3,7 @@
 import { AlertTriangle, Clock } from "lucide-react";
 import { useInView } from "@/hooks/useInView";
 import { motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 const problems = [
   {
@@ -23,12 +23,14 @@ const problems = [
 function ProblemCard({ problem, i }: { problem: any; i: number }) {
   const Icon = problem.icon;
   const divRef = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!divRef.current) return;
     const rect = divRef.current.getBoundingClientRect();
-    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    divRef.current.style.setProperty("--mouse-x", `${x}px`);
+    divRef.current.style.setProperty("--mouse-y", `${y}px`);
   };
 
   return (
@@ -45,7 +47,7 @@ function ProblemCard({ problem, i }: { problem: any; i: number }) {
       <div
         className="pointer-events-none absolute -inset-px rounded-[24px] sm:rounded-[40px] opacity-0 transition duration-300 group-hover:opacity-100 z-10"
         style={{
-          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(234, 67, 53, 0.4), transparent 40%)`,
+          background: `radial-gradient(600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(234, 67, 53, 0.4), transparent 40%)`,
           padding: "1px",
           WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
           WebkitMaskComposite: "xor",

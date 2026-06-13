@@ -28,6 +28,7 @@ export default function AnimatedBackground() {
     let animationId: number;
     let particles: Particle[] = [];
     let fadeOpacity = 0;
+    let isVisible = true;
 
     const resize = () => {
       const dpr = window.devicePixelRatio || 1;
@@ -85,6 +86,8 @@ export default function AnimatedBackground() {
     let time = 0;
 
     const animate = () => {
+      if (!isVisible) return;
+
       const w = window.innerWidth;
       const h = window.innerHeight;
       ctx.clearRect(0, 0, w, h);
@@ -167,11 +170,21 @@ export default function AnimatedBackground() {
         }
         ctx.fill();
 
-        // Add glow for front-most particles
+        // Add glow for front-most particles by drawing a larger, softer pill shape (highly performant alternative to shadowBlur)
         if (depthNormalized > 0.8) {
-          ctx.shadowBlur = 15 * scale;
-          ctx.shadowColor = p.color;
+          ctx.save();
+          ctx.globalAlpha = p.opacity * zOpacity * fadeOpacity * 0.25;
+          ctx.fillStyle = p.color;
+          ctx.beginPath();
+          const glowW = sizeW * 2.5;
+          const glowL = sizeL * 2.5;
+          if (ctx.roundRect) {
+            ctx.roundRect(-glowW / 2, -glowL / 2, glowW, glowL, glowW / 2);
+          } else {
+            ctx.rect(-glowW / 2, -glowL / 2, glowW, glowL);
+          }
           ctx.fill();
+          ctx.restore();
         }
 
         ctx.restore();
@@ -182,7 +195,19 @@ export default function AnimatedBackground() {
 
     resize();
     createParticles();
-    animationId = requestAnimationFrame(animate);
+
+    // Intersection Observer to pause animation loop when off-screen
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          cancelAnimationFrame(animationId);
+          animationId = requestAnimationFrame(animate);
+        }
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(canvas);
 
     const handleMouseMove = (e: MouseEvent) => {
       mouse.current = { x: e.clientX, y: e.clientY };
@@ -199,6 +224,7 @@ export default function AnimatedBackground() {
       cancelAnimationFrame(animationId);
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", handleMouseMove);
+      observer.disconnect();
     };
   }, []);
 
